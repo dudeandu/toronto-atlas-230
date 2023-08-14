@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Toronto Star graphic template</title>
+    <link rel="stylesheet" href="https://misc.thestar.com/interactivegraphic/assets/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" type="text/css" href="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/cta-style.css">
+
+    <script src="https://misc.thestar.com/interactivegraphic/libraries/d3v4.min.js"></script>
+    <script src="https://misc.thestar.com/interactivegraphic/libraries/topojson.v2.min.js"></script>
+
+
+<style>
+
+.graphic-wrapper {
+  /* max-width: 660px; */
+}
+
+.map-container {
+	width: 100%;
+	position: relative;
+  text-align: center;
+  margin: 0 0 16px;
+}
+
+.map {
+	width: 100%;
+  display: inline-block;
+}
+
+
+.mapheading {
+  margin: 0;
+  letter-spacing: 1px;
+  font-size: 18px;
+  line-height: 1em;
+  padding: 5px 0 10px;
+  font-family: Helvetica;
+  color: #666;
+}
+
+.ward, .ward25 {
+      stroke: #ccc;
+	stroke-width: 0.5px;
+	/*fill-opacity: 0.8;*/
+}
+
+ .active-node {
+	stroke: #f8f8f8;
+      stroke-width: 1.5px;
+    }
+
+.scalevalue {
+	font-size: 13px;
+	color: #404040;
+}
+
+
+.scale {
+  fill: url(#gradient);
+}
+
+#backbox {
+  fill-opacity: 0;
+}
+
+.area-label {
+	font-size: 12px;
+	fill: #F8F8F8;
+	font-family: Helvetica, Arial, sans-serif;
+	text-anchor: middle;
+  	pointer-events: none;
+}
+
+.area-label-background {
+  	stroke: #333;
+    stroke-width: 3px;
+    stroke-opacity: 0.5;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+}
+
+/*TOOLTIP*/
+
+#tooltip {
+    position: absolute;
+    width: 120px;
+    height: auto;
+    padding: 10px;
+    border-radius: 3px;
+	  background-color: rgba(255,255,255,0.9);
+    -webkit-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+    pointer-events: none;
+    font-family: helvetica, Arial, sans-serif;
+    text-align: left;
+}
+
+#tooltip.hidden {
+    display: none;
+}
+
+#tooltip #closebutton {
+  float: right;
+  position: relative;
+  height: 30px;
+  width: 30px;
+  margin: -5px -5px 0 0;
+  cursor: pointer;
+  display: none;
+}
+
+#tooltip #closebutton .icon {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%,-50%);
+   color: #666;
+
+}
+
+#tooltip p {
+    margin: 0;
+    margin: 0;
+    line-height: 1.2em;
+    color: #404040;
+    letter-spacing: 0.2px;
+}
+
+#tooltip .ttname {
+	font-size: 14px;
+}
+
+#tooltip .ttvalue {
+	font-size: 20px;
+	padding-bottom: 0;
+}
+
+#tooltip .ttvaluelabel {
+  font-size: 10px;
+  padding-top: 4px;
+  text-transform: uppercase;
+}
+
+/*END OF TOOLTIP*/
+
+.legend-bottom {
+  text-align: center;
+   margin: 10px 0 0;
+   font-family: Helvetica, Arial, sans-serif;
+}
+
+.graphic-legend {
+  width: 280px;
+  
+  vertical-align: top;
+  /*margin-bottom: 15px;*/
+  display: none;
+}
+
+.active-legend {
+  display: inline-block;
+}
+
+
+.legendheading {
+  text-align: center;
+  margin: 0 auto;
+  padding-bottom: 5px;
+  color: #444;
+  font-size: 14px;
+  line-height: 1.1em;
+  max-width: 280px;
+}
+
+.legendbox-container-1 {
+  width: 280px;
+  margin: 0 auto;
+}
+
+.legendbox-container-2 {
+  width: 280px;
+  margin: 0 auto;
+}
+
+.legendbox {
+  width: 35px;
+  height: 12px;
+  float: left;
+}
+
+#legendbox1 {
+  background-color: #d3edf4;
+}
+
+#legendbox2 {
+  background-color: #bbdae6;
+}
+
+#legendbox3 {
+  background-color: #a3c7d8;
+}
+
+#legendbox4 {
+  background-color: #8ab5c9;
+}
+
+#legendbox5 {
+  background-color: #72a3bb;
+}
+
+#legendbox6 {
+  background-color: #5a91ae;
+}
+
+#legendbox7 {
+  background-color: #3d80a0;
+}
+
+#legendbox8 {
+  background-color: #166f93;
+}
+
+
+
+
+
+.legendnumber-container-1 {
+  margin: 24px auto 0;
+  padding-left: 17px;
+}
+
+.legendnumber {
+  width: 35px;
+  float: left;
+  color: #555;
+  font-size: 12px;
+  line-height: 1em;
+  margin: 0;
+}
+
+
+
+/*END OF LEGEND*/
+
+
+
+
+
+
+
+@media (max-width: 526px) {
+
+
+  .map-container {
+  width: 100%;
+  position: relative;
+  text-align: center;
+  margin: 0;
+  }
+
+  .map {
+    width: 100%;
+    display: block;
+    padding-bottom: 15px;
+  }
+
+
+
+
+  #tooltip .ttname {
+    font-size: 13px;
+    padding-bottom: 4px;
+  }
+
+  #tooltip .ttvalue {
+    font-size: 16px;
+    padding-bottom: 0;
+  }
+
+  .area-label {
+  	font-size: 9px;
+  }
+
+  .area-label-background {
+    stroke-width: 2px;
+}
+
+
+	
+}
+
+.legend-bottom {
+  display: none;
+}
+
+
+
+
+</style>
+</head>
+<body>
+  <div class="graphic-wrapper graphic-mapfirearm-discharges">
+    
+
+    <div class="graphic">
+
+         <div class="map-container">
+
+                <div class="map" id="map-firearm-discharges"></div>
+
+                <div id="tooltip" class="hidden">
+                    <div id="value"></div>
+                </div>
+
+            </div>
+
+
+
+            <div class="legend-bottom">
+                <div class="graphic-legend active-legend" id="graphic-legend-1">
+                    <p class="legendheading">Average home proces in June 2023</p>
+                    
+                    <div class="legendbox-container-1 clearfix">
+                        <div class="legendbox" id="legendbox1"></div>
+                        <div class="legendbox" id="legendbox2"></div>
+                        <div class="legendbox" id="legendbox3"></div>
+                        <div class="legendbox" id="legendbox4"></div>
+                        <div class="legendbox" id="legendbox5"></div>
+                        <div class="legendbox" id="legendbox6"></div>
+                        <div class="legendbox" id="legendbox7"></div>
+                        <div class="legendbox" id="legendbox8"></div>
+                    </div>
+                    <div class="legendnumber-container-1 clearfix">
+                        <p class="legendnumber" id="legendnumber1">>800K</p>
+                        <p class="legendnumber" id="legendnumber2">1M</p>
+                        <p class="legendnumber" id="legendnumber3">1.2M</p>
+                        <p class="legendnumber" id="legendnumber4">1.4M</p>
+                        <p class="legendnumber" id="legendnumber5">1.6M</p>
+                        <p class="legendnumber" id="legendnumber6">1.8M</p>
+                        <p class="legendnumber" id="legendnumber7">2M+</p>
+                    </div>
+                </div>
+            </div>
+
+  
+
+
+    </div>
+
+
+
+  </div>
+
+<script src="./js/firearm-discharges.js"></script>
+
+<script type="text/javascript">
+
+ function resize(){
+        var message = {'resize': 
+                  {
+                    'iframe':'firearm-discharges',
+                    'height': document.getElementsByClassName('graphic-mapfirearm-discharges')[0].offsetHeight + 4
+                  }
+                };
+       
+        parent.postMessage(message, "*");
+    };
+
+    window.addEventListener('load', function() {
+        resize();
+    });
+
+    window.addEventListener("resize", function(){
+        resize();
+    });
+
+
+document.addEventListener("touchstart", function(){}, true);
+
+</script>
+
+<!-- <style>#firearm-discharges{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="firearm-discharges" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/firearm-discharges/index.html" scrolling="no" height="1050" title="embedded content"></iframe> -->
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Toronto Star graphic template</title>
+    <link rel="stylesheet" href="https://misc.thestar.com/interactivegraphic/assets/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"> 
+
+<style>
+
+
+
+
+.graphic-wrapper .graphic-top {
+  max-width: 690px;
+  margin: 30px auto 40PX;
+}
+
+.graphic-wrapper h2 {
+    /* text-transform: uppercase; */
+}
+
+.dividerLine {
+    margin:40px auto;
+    width:100%;
+    /* border-bottom: 1px solid #ccc; */
+}
+
+
+</style>
+</head>
+<body>
+  <div class="graphic-wrapper graphic-1">
+    <div class="graphic-top">
+        <h2 class="graphic-top__graphic-hed">Celebrating 130 years of Toronto: 11 ways to see the city</h2><br>
+        <h3 class="graphic-top__graphic-dek">As Toronto turns 230 on July 29th, we started thinking about the geography of the city, both physical and human. The following maps explore a quickly changing city, illuminating the divisions and challenges that define both its present and its future.</h3>
+
+        <!-- <div class="graphic-legend">
+            <div class="graphic-legend-container">
+                <div class="graphic-legend-dot" id="legend-dot-1"></div><p class="graphic-legend-text">Legend text 1</p>
+            </div>
+            <div class="graphic-legend-container">
+                <div class="graphic-legend-dot" id="legend-dot-2"></div><p class="graphic-legend-text">Legend text 2</p>
+            </div>
+        </div> -->
+    </div>
+
+    <!-- <div class="graphic">
+    </div>
+    <div class="graphic-bottom">
+        <p class="graphic-bottom__notetext" id="notetext">* Any further note to explain one aspect of the data could go here.</p>
+        <p class="graphic-bottom__graphic-source" id="source">Source: Stats report</p>
+        <p class="graphic-bottom__graphic-byline" id="byline">Toronto Star graphic</p>
+    </div>
+  </div> -->
+
+  <style>#toronto-density{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="toronto-density" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/density/index.html" scrolling="no" height="850" title="Population density embedded content"></iframe>
+  <div class="dividerLine"></div>
+  <style>#toronto-household-dwellings{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="toronto-household-dwellings" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/household-dwellings/index.html" scrolling="no" height="850" title="Private households embedded content"></iframe>
+  <div class="dividerLine"></div>
+  <style>#toronto-pop-change{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="toronto-pop-change" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/pop-change/index.html" scrolling="no" height="850" title="Population change embedded content"></iframe>
+  <div class="dividerLine"></div>
+  <style>#toronto-age-difference{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="toronto-age-difference" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/age-difference/index.html" scrolling="no" height="850" title="Average age change embedded content"></iframe>
+  <div class="dividerLine"></div>
+  <style>#toronto-median-household-income{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="toronto-median-household-income" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/household-incomes/index.html" scrolling="no" height="850" title="Median household income embedded content"></iframe>
+  <div class="dividerLine"></div>
+  <style>#toronto-first-generation-canadians{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="toronto-first-generation-canadians" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/generations/index.html" scrolling="no" height="850" title="First generation canadians embedded content"></iframe>
+  <div class="dividerLine"></div>
+  <style>#toronto-housing-prices{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="toronto-housing-prices" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/housing-prices/index.html" scrolling="no" height="850" title="House prices embedded content"></iframe>
+  <div class="dividerLine"></div>
+  <style>#toronto-tree-coverage{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="toronto-tree-coverage" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/tree-coverage/index.html" scrolling="no" height="850" title="Tree coverage embedded content"></iframe>
+  <div class="dividerLine"></div>
+  <style>#toronto-mayoral-votes-leaning{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="toronto-mayoral-votes-leaning" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/mayor-votes-leaning/index.html" scrolling="no" height="850" title="Mayor votes 2023 embedded content"></iframe>
+  <div class="dividerLine"></div>
+  <style>#firearm-discharges{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="firearm-discharges" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/firearm-discharges/index.html" scrolling="no" height="850" title="Firearm discharges embedded content"></iframe>
+  <div class="dividerLine"></div>
+  <style>#toronto-crime-car-thefts{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="toronto-crime-car-thefts" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/crime-car-thefts/index.html" scrolling="no" height="850" title="Vehicle thefts embedded content"></iframe>
+
+<script>
+
+
+    function resize(){
+        var message = {'resize': 
+                  {
+                    'iframe':'graphic-iframe-1',
+                    'height': document.getElementsByClassName('graphic-1')[0].offsetHeight + 20
+                  }
+                };
+       
+        parent.postMessage(message, "*");
+    };
+
+    window.addEventListener('load', function() {
+        resize();
+    });
+
+    window.addEventListener("resize", function(){
+        resize();
+    });
+
+    setTimeout(function() {
+                        resize();
+                    }, 800);
+
+  
+	document.addEventListener("touchstart", function(){}, true);
+
+</script>
+
+<!-- <style>#graphic-iframe-1{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="graphic-iframe-1" src="SOURCETKTKTKT" scrolling="no" height="850" title="embedded content"></iframe> -->
+
+</body>
+</html>

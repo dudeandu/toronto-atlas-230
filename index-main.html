@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Toronto Star graphic template</title>
+    <link rel="stylesheet" href="https://misc.thestar.com/interactivegraphic/assets/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" type="text/css" href="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/cta-style.css">
+
+    <script src="https://misc.thestar.com/interactivegraphic/libraries/d3v4.min.js"></script>
+    <script src="https://misc.thestar.com/interactivegraphic/libraries/topojson.v2.min.js"></script>
+
+<style>
+
+
+
+
+.graphic-wrapper .graphic-top {
+  max-width: 690px;
+  margin: 30px auto 0;
+}
+
+.topIllustration {
+    position: relative;
+    width: 210px;
+    height: 108px;
+    margin: 0 auto;
+}
+
+.topIllustration img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.graphic-wrapper .graphic-top,
+  .graphic-wrapper .graphic-bottom {
+    max-width: 690px;
+    margin: 0 auto 0;
+    padding-bottom: 0;
+  }
+  .graphic-wrapper .graphic-bottom {
+    margin-top: 20px;
+  }
+  
+  .graphic-wrapper h2 {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+      font-size: 24px;
+      font-weight: 600;
+      /* text-transform: uppercase; */
+      text-align: center;
+  }
+  
+  .graphic-wrapper .graphic-top p {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+  .graphic-wrapper .graphic-top .topIllustration {
+    margin: 80px auto 0;
+  }
+
+  .graphic-wrapper .graphic-top p.section {
+    color: #0077BB;
+    font-size: 16px;
+    margin: 20px auto;
+  }
+  .graphic-wrapper .graphic-top p.author {
+    margin: 80px 0 0;
+    color: #0077BB;
+    text-transform: none;
+  }
+
+  .graphic-wrapper .graphic-top a {
+    color: #0077BB;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  
+  .graphic-wrapper .graphic-top a:hover, 
+  .graphic-wrapper .graphic-top a:focus {
+    color: #707070;
+  }
+  .graphic-wrapper .graphic-top a:visited {
+    color: #0077BB;
+  }
+
+
+  .graphic-wrapper .graphic-top p.pubDate {
+    margin: 0;
+    color: #666;
+    font-size: 16px;
+    text-transform: none;
+    font-weight: 400;
+  }
+  
+  .graphic-wrapper .graphic-top__graphic-dek {
+      text-align: center;
+      padding-bottom: 4px;
+  }
+
+  .graphic-top__graphic-dek.graphHed {
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .graphic-top__graphic-dek.contextBlock {
+    margin-bottom: 32px;
+  }
+
+  .graphic-wrapper .graphic-top:first-of-type {
+    margin-bottom: 80px;
+  }
+
+  .graphic-wrapper .graphic-top:first-of-type h2 {
+  font-size: 48px;
+  line-height: 1.2em;
+  padding-bottom: 4px;
+  font-family: "TorstarDeckCondensed", Georgia, "Times New Roman", Times, serif;
+  color: #000;
+  text-rendering: optimizeLegibility;
+  font-weight: normal;
+  font-style: normal;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+}
+  @media (min-width: 526px) {
+    .graphic-wrapper .graphic-top:first-of-type {
+      font-size: 28px; } }
+  @media (min-width: 592px) {
+    .graphic-wrapper .graphic-top:first-of-type {
+      font-size: 30px; } }
+
+
+.graphic-top p.graphic-bottom__graphic-source {
+    /* display: block; */
+  margin: 0 auto;
+  width: 100%;
+  padding-bottom: 4px;
+  font-size: 11px;
+  line-height: 1.35em;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  color: #B8B8B8;
+  text-align: center;
+  text-rendering: optimizeLegibility;
+  text-transform: uppercase; 
+}
+  @media (min-width: 526px) {
+    .graphic-top p.graphic-bottom__graphic-source {
+      max-width: 100%;
+      width: 100%;
+      vertical-align: top;
+      /* float: left; */
+      font-size: 12px; } }
+
+.interactive-graphic-cta {
+    white-space: normal;
+    text-align: center;
+    width: 100%;
+}
+
+.dividerLine {
+    margin:40px auto;
+    width:100%;
+    /* border-bottom: 1px solid #ccc; */
+}
+
+.dividerLine.smallLine {
+    margin:60px auto;
+    width:50px;
+    border-bottom: 1px solid #ccc;
+}
+
+.breaker-container{
+    display: flex;
+    align-content: space-between;
+    /* flex-wrap: wrap; */
+    margin:60px auto;
+    width:300px;
+}
+
+.imgContainer {
+    width: 150px
+}
+
+.noBreak {
+    white-space: nowrap;
+}
+
+
+</style>
+</head>
+<body>
+  <div class="graphic-wrapper graphic-1">
+    <div class="graphic-top">
+        <div id="topIllo" class="topIllustration">
+            <!-- <img id="loopThisTopImg" src="" alt="a small map of toronto"> -->
+            <img class="fade-image" src="./img/topillo0.png" alt="a small map of toronto" style="opacity: 1;">
+            <img class="fade-image" src="./img/topillo1.png" alt="a small map of toronto">
+            <img class="fade-image" src="./img/topillo2.png" alt="a small map of toronto">
+            <img class="fade-image" src="./img/topillo3.png" alt="a small map of toronto">
+        </div>
+        <p class="section">Toronto feature</p>
+        <h2 class="graphic-top__graphic-hed">Celebrating Toronto's 230:<br>9 ways to see the city</h2><br>
+        <h3 class="graphic-top__graphic-dek">As Toronto turns 230 on July 29th, we started thinking about the geography of the city, both physical and human. The following maps explore a quickly changing city, illuminating the divisions and challenges that define both its present and its future.</h3>
+        <p class="author"><a href="https://www.andresplana.com" target="_blank">Name of author</a></p>
+        <p class="pubDate">August 27, 2023</p>
+
+        <!-- <div class="graphic-legend">
+            <div class="graphic-legend-container">
+                <div class="graphic-legend-dot" id="legend-dot-1"></div><p class="graphic-legend-text">Legend text 1</p>
+            </div>
+            <div class="graphic-legend-container">
+                <div class="graphic-legend-dot" id="legend-dot-2"></div><p class="graphic-legend-text">Legend text 2</p>
+            </div>
+        </div> -->
+    </div>
+
+    <div class="breaker-container">
+        <div class="dividerLine smallLine"></div>
+        <div class="imgContainer">
+            <img src="./img/breaker/to-skyline.svg" alt="an illustrated skyline of Toronto">
+        </div>
+        <div class="dividerLine smallLine"></div>
+    </div>
+
+    <!-- <div class="graphic">
+    </div>
+    <div class="graphic-bottom">
+        <p class="graphic-bottom__notetext" id="notetext">* Any further note to explain one aspect of the data could go here.</p>
+        <p class="graphic-bottom__graphic-source" id="source">Source: Stats report</p>
+        <p class="graphic-bottom__graphic-byline" id="byline">Toronto Star graphic</p>
+    </div>
+  </div> -->
+                <div class="graphic-top">
+                    <h2 class="graphic-top__graphic-hed">Aging with its population, Toronto has become a bustling, populous city</h2>
+                    <h3 class="graphic-top__graphic-dek contextBlock">The city is packed, and it's only getting more packed. In 2016 population density in Toronto was 4,334, and in 2021 4,428 persons per square kilometer. With most of the population concentrating in the downtown core, where population density is 16,608. Making it the second most dense Canadian downtown core behind Vancouver's own downtown (18,837). In comparison Montreal's downtown density is almost half of Toronto's at 8,367.</h3>
+                    <h3 class="graphic-top__graphic-dek graphHed">Population density, 2021</h3>
+                    <p class="graphic-bottom__graphic-source" id="source">Source: Statistics Canada</p>
+
+                    <span class="interactive-graphic-cta interactive-graphic-cta__desktop"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Hover.svg" height="23px">Hover on each area for more information</span><span class="interactive-graphic-cta interactive-graphic-cta__mobile"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Tap.svg" height="23px">Tap on each area for more information</span>
+
+                    <!-- <div class="graphic-legend">
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-1"></div><p class="graphic-legend-text">Legend text 1</p>
+                        </div>
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-2"></div><p class="graphic-legend-text">Legend text 2</p>
+                        </div>
+                    </div> -->
+                </div>
+                <style>#toronto-density{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="toronto-density" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/_all-in-one/index-density.html" scrolling="no" height="650" title="Population density embedded content"></iframe>
+                
+                <!-- <div class="graphic-bottom"> -->
+                    <!-- <p class="graphic-bottom__notetext" id="notetext">* Any further note to explain one aspect of the data could go here.</p> -->
+                    <!-- <p class="graphic-bottom__graphic-source" id="source">Source: Statistics Canada</p> -->
+                    <!-- <p class="graphic-bottom__graphic-byline" id="byline">Toronto Star graphic</p> -->
+                <!-- </div> -->
+                
+                <div class="dividerLine"></div>
+
+
+                
+                <!-- <div class="graphic-top"> -->
+                    <!-- <h2 class="graphic-top__graphic-hed">Total households, 2021</h2> -->
+                    <!-- <h3 class="graphic-top__graphic-dek graphHed">Total households, 2021</h3> -->
+
+                    <!-- <span class="interactive-graphic-cta interactive-graphic-cta__desktop"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Hover.svg" height="23px">Hover on each area for more information</span><span class="interactive-graphic-cta interactive-graphic-cta__mobile"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Tap.svg" height="23px">Tap on each area for more information</span> -->
+
+                    <!-- <div class="graphic-legend">
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-1"></div><p class="graphic-legend-text">Legend text 1</p>
+                        </div>
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-2"></div><p class="graphic-legend-text">Legend text 2</p>
+                        </div>
+                    </div> -->
+                <!-- </div> -->
+                <!-- <style>#toronto-household-dwellings{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="toronto-household-dwellings" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/_all-in-one/index-household-dwellings.html" scrolling="no" height="650" title="Private households embedded content"></iframe> -->
+                <!-- <div class="graphic-bottom"> -->
+                    <!-- <p class="graphic-bottom__notetext" id="notetext">* Any further note to explain one aspect of the data could go here.</p> -->
+                    <!-- <p class="graphic-bottom__graphic-source" id="source">Source: Statistics Canada</p> -->
+                    <!-- <p class="graphic-bottom__graphic-byline" id="byline">Toronto Star graphic</p> -->
+                <!-- </div> -->
+
+                <!-- <div class="dividerLine"></div> -->
+
+
+
+                <div class="graphic-top">
+                    <!-- <h2 class="graphic-top__graphic-hed">But that growth has not been uniform</h2> -->
+                    <h3 class="graphic-top__graphic-dek contextBlock">In the city, the population grew from an estimated 2,731,571 in 2016 to 2,794,356 in 2021. That's an increase of 2.3%. In comparison, Canada as a whole grew by 5.2% <span class="noBreak">and Ontario 5.8%.</span></h3>
+                    <h3 class="graphic-top__graphic-dek graphHed">Population change between 2016 and 2021</h3>
+                    <p class="graphic-bottom__graphic-source" id="source">Source: Statistics Canada</p>
+                    
+            
+                    <span class="interactive-graphic-cta interactive-graphic-cta__desktop"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Hover.svg" height="23px">Hover on each area for more information</span><span class="interactive-graphic-cta interactive-graphic-cta__mobile"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Tap.svg" height="23px">Tap on each area for more information</span>
+            
+                    <!-- <div class="graphic-legend">
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-1"></div><p class="graphic-legend-text">Legend text 1</p>
+                        </div>
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-2"></div><p class="graphic-legend-text">Legend text 2</p>
+                        </div>
+                    </div> -->
+                </div>
+                <style>#toronto-pop-change{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="toronto-pop-change" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/_all-in-one/index-pop-change.html" scrolling="no" height="650" title="Population change embedded content"></iframe>
+                <!-- <div class="graphic-bottom"> -->
+                    <!-- <p class="graphic-bottom__notetext" id="notetext">* Any further note to explain one aspect of the data could go here.</p> -->
+                    <!-- <p class="graphic-bottom__graphic-source" id="source">Source: Statistics Canada</p> -->
+                    <!-- <p class="graphic-bottom__graphic-byline" id="byline">Toronto Star graphic</p> -->
+                <!-- </div> -->
+
+                <div class="dividerLine"></div>
+
+
+
+                <div class="graphic-top">
+                    <!-- <h2 class="graphic-top__graphic-hed">Large swaths of the city are growing older</h2> -->
+                    <h3 class="graphic-top__graphic-dek contextBlock">Toronto is getting older. As a whole, the population's average age grew almost one year between 2016 and 2021. What is bad about that? how can we solve it?</h3>
+                    <h3 class="graphic-top__graphic-dek graphHed">Change in the average age between 2016 and 2021</h3>
+                    <p class="graphic-bottom__graphic-source" id="source">Source: Statistics Canada</p>
+
+                    <span class="interactive-graphic-cta interactive-graphic-cta__desktop"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Hover.svg" height="23px">Hover on each area for more information</span><span class="interactive-graphic-cta interactive-graphic-cta__mobile"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Tap.svg" height="23px">Tap on each area for more information</span>
+            
+                    <!-- <div class="graphic-legend">
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-1"></div><p class="graphic-legend-text">Legend text 1</p>
+                        </div>
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-2"></div><p class="graphic-legend-text">Legend text 2</p>
+                        </div>
+                    </div> -->
+                </div>
+                <style>#toronto-age-difference{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="toronto-age-difference" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/_all-in-one/index-age-difference.html" scrolling="no" height="650" title="Average age change embedded content"></iframe>
+                <div class="graphic-bottom">
+                    <!-- <p class="graphic-bottom__notetext" id="notetext">* Any further note to explain one aspect of the data could go here.</p> -->
+                    <!-- <p class="graphic-bottom__graphic-source" id="source">Source: Statistics Canada</p> -->
+                    <!-- <p class="graphic-bottom__graphic-byline" id="byline">Toronto Star graphic</p> -->
+                </div>
+
+                <div class="dividerLine"></div>
+
+
+
+                <div class="graphic-top">
+                    <h2 class="graphic-top__graphic-hed">It's a wealthy city, but unevenly so</h2>
+                    <h3 class="graphic-top__graphic-dek ">In 2021, the median total household income in Toronto was $84,000, an increase of about $18,000 since 2016. This is the lowest of all regions in the Greater Toronto<span class="noBreak"> and Hamilton Area.</span></h3>
+                    <h3 class="graphic-top__graphic-dek contextBlock">The distribution of wealth around the city is concentrated in two major areas. Roughly in the centre of the city and in the area of central Etobicoke, where most census tracts have a median household income above $120,000. Lower income areas spread more around the city with two major concentrations in the York and Downtown Core areas.<h3>
+                    <h3 class="graphic-top__graphic-dek graphHed">Median household income, 2020</h3>
+                    <p class="graphic-bottom__graphic-source" id="source">Source: Statistics CANADA. City of Toronto</p>
+                    
+                    <span class="interactive-graphic-cta interactive-graphic-cta__desktop"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Hover.svg" height="23px">Hover on each area for more information</span><span class="interactive-graphic-cta interactive-graphic-cta__mobile"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Tap.svg" height="23px">Tap on each area for more information</span>
+            
+                    <!-- <div class="graphic-legend">
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-1"></div><p class="graphic-legend-text">Legend text 1</p>
+                        </div>
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-2"></div><p class="graphic-legend-text">Legend text 2</p>
+                        </div>
+                    </div> -->
+                </div>
+                <style>#toronto-median-household-income{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="toronto-median-household-income" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/_all-in-one/index-household-incomes.html" scrolling="no" height="650" title="Median household income embedded content"></iframe>
+                <!-- <div class="graphic-bottom"> -->
+                    <!-- <p class="graphic-bottom__notetext" id="notetext">* Any further note to explain one aspect of the data could go here.</p> -->
+                    <!-- <p class="graphic-bottom__graphic-source" id="source">Source: Statistics CANADA</p> -->
+                    <!-- <p class="graphic-bottom__graphic-byline" id="byline">Toronto Star graphic</p> -->
+                <!-- </div> -->
+
+                <div class="dividerLine"></div>
+
+
+
+                <div class="graphic-top">
+                    <!-- <h2 class="graphic-top__graphic-hed">It's a city defined by immigration, but not in every neighbourhood</h2> -->
+                    <h3 class="graphic-top__graphic-dek contextBlock">In 2021, almost half (46.6%) of the population living in the Toronto CMA were immigrants. In contrast to the wealth distribution, first generation Canadians are concentrated in areas whith higher population density and lower median household income. In the midst of an aging population, and controversy surrounding the support the city recieves to manage refugees, Toronto received 113,383 new immigrants in 2022</h3>
+                    <h3 class="graphic-top__graphic-dek graphHed">Percentage of first-generation Canadians in private dwellings, 2021</h3>
+                    <p class="graphic-bottom__graphic-source" id="source">Source: Statistics Canada</p>
+
+                    <span class="interactive-graphic-cta interactive-graphic-cta__desktop"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Hover.svg" height="23px">Hover on each area for more information</span><span class="interactive-graphic-cta interactive-graphic-cta__mobile"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Tap.svg" height="23px">Tap on each area for more information</span>
+            
+                    <!-- <div class="graphic-legend">
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-1"></div><p class="graphic-legend-text">Legend text 1</p>
+                        </div>
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-2"></div><p class="graphic-legend-text">Legend text 2</p>
+                        </div>
+                    </div> -->
+                </div>
+                <style>#toronto-first-generation-canadians{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="toronto-first-generation-canadians" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/_all-in-one/index-generations.html" scrolling="no" height="650" title="First generation canadians embedded content"></iframe>
+                <!-- <div class="graphic-bottom"> -->
+                    <!-- <p class="graphic-bottom__notetext" id="notetext">* Any further note to explain one aspect of the data could go here.</p> -->
+                    <!-- <p class="graphic-bottom__graphic-source" id="source">Source: Statistics Canada</p> -->
+                    <!-- <p class="graphic-bottom__graphic-byline" id="byline">Toronto Star graphic</p> -->
+                <!-- </div> -->
+
+                <div class="dividerLine"></div>
+
+
+
+                <div class="graphic-top">
+                    <!-- <h2 class="graphic-top__graphic-hed">It is an expensive city to live in</h2> -->
+                    <!-- <h3 class="graphic-top__graphic-dek">In similar fashion to the average prices, the higher valued areas remain in the centre of the city, where population density is the lowest, and average household income is higher.</h3> -->
+                    <h3 class="graphic-top__graphic-dek">Soaring home prices have an issue in recent years. Toronto's average home prices have doubled from $500,934 in 2012 to $1,066,184 in July 2023. In continued attempts to slow down the increase, Bank of Canada have increased rates to five per cent.</h3>
+                    <h3 class="graphic-top__graphic-dek contextBlock">Even for renters, Toronto has become a city for the wealthy. Average rental prices for 2-bedroom aparments are at $2,572. For a person earning minimum wage, this would equal to to working 134.29 hours weekly in order to afford that.<h3>
+                    <h3 class="graphic-top__graphic-dek graphHed">Average home prices, July 2023</h3>
+                    <p class="graphic-bottom__graphic-source" id="source">Source: Toronto Regional Real Estate Board. Canadian Centre for Policy Alternatives</p>
+
+                    <span class="interactive-graphic-cta interactive-graphic-cta__desktop"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Hover.svg" height="23px">Hover on each area for more information</span><span class="interactive-graphic-cta interactive-graphic-cta__mobile"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Tap.svg" height="23px">Tap on each area for more information</span>
+            
+                    <!-- <div class="graphic-legend">
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-1"></div><p class="graphic-legend-text">Legend text 1</p>
+                        </div>
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-2"></div><p class="graphic-legend-text">Legend text 2</p>
+                        </div>
+                    </div> -->
+                </div>
+                <style>#toronto-housing-prices{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="toronto-housing-prices" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/_all-in-one/index-housing-prices.html" scrolling="no" height="650" title="House prices embedded content"></iframe>
+                <div class="graphic-bottom">
+                    <!-- <p class="graphic-bottom__notetext" id="notetext">* Any further note to explain one aspect of the data could go here.</p> -->
+                    <!-- <p class="graphic-bottom__graphic-source" id="source">Source: Toronto Regional Real Estate Board</p> -->
+                    <!-- <p class="graphic-bottom__graphic-byline" id="byline">Toronto Star graphic</p> -->
+                </div>
+
+                <div class="dividerLine"></div>
+
+
+
+                <!-- <div class="graphic-top"> -->
+                    <!-- <h2 class="graphic-top__graphic-hed">But the streetscapes are often leafy</h2> -->
+                    <!-- <h3 class="graphic-top__graphic-dek contextBlock">Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi voluptas consectetur et praesentium quibusdam non sapiente ex, recusandae porro. Eligendi consequuntur nulla, quaerat vitae, eos voluptatem harum facilis porro enim quidem nostrum mollitia aliquid quam maiores? Nemo ab enim nesciunt.->
+                    <!-- <h3 class="graphic-top__graphic-dek graphHed">Tree coverage, 2018</h3> -->
+            
+                    <!-- <span class="interactive-graphic-cta interactive-graphic-cta__desktop"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Hover.svg" height="23px">Hover on each area for more information</span><span class="interactive-graphic-cta interactive-graphic-cta__mobile"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Tap.svg" height="23px">Tap on each area for more information</span> -->
+            
+                    <!-- <div class="graphic-legend">
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-1"></div><p class="graphic-legend-text">Legend text 1</p>
+                        </div>
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-2"></div><p class="graphic-legend-text">Legend text 2</p>
+                        </div>
+                    </div> -->
+                <!-- </div> -->
+                <!-- <style>#toronto-tree-coverage{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="toronto-tree-coverage" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/_all-in-one/index-tree-coverage.html" scrolling="no" height="615" title="Tree coverage embedded content"></iframe> -->
+                <!-- <div class="graphic-bottom"> -->
+                    <!-- <p class="graphic-bottom__notetext" id="notetext">* Any further note to explain one aspect of the data could go here.</p> -->
+                    <!-- <p class="graphic-bottom__graphic-source" id="source">Source: City of Toronto</p> -->
+                    <!-- <p class="graphic-bottom__graphic-byline" id="byline">Toronto Star graphic</p> -->
+                <!-- </div> -->
+
+                <!-- <div class="dividerLine"></div> -->
+
+
+
+                <div class="graphic-top">
+                    <h2 class="graphic-top__graphic-hed">Many of its divisions are reflected in its politics and crime</h2>
+                    <h3 class="graphic-top__graphic-dek contextBlock">After Mayor John Tory resigned to the position for having a months-long affair with a former staffer, over one hundred candidates stepped up to the position in upcoming mayoral elections. Of those, only two stood out. Olivia Chow and Ana Bailão. Even with the support of John Tory, Bailão failed rally enough votes, and Chow won the elections. </h3>
+                    <h3 class="graphic-top__graphic-dek graphHed">How Toronto voted in the June 2023 mayoral election. <br>Voting trend between Olivia Chow and Ana Bailão.</h3>
+                    <p class="graphic-bottom__graphic-source" id="source">Source: City of Toronto</p>
+
+                    <span class="interactive-graphic-cta interactive-graphic-cta__desktop"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Hover.svg" height="23px">Hover on each area for more information</span><span class="interactive-graphic-cta interactive-graphic-cta__mobile"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Tap.svg" height="23px">Tap on each area for more information</span>
+            
+                    <!-- <div class="graphic-legend">
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-1"></div><p class="graphic-legend-text">Legend text 1</p>
+                        </div>
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-2"></div><p class="graphic-legend-text">Legend text 2</p>
+                        </div>
+                    </div> -->
+                </div>
+                <style>#toronto-mayoral-votes-leaning{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="toronto-mayoral-votes-leaning" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/_all-in-one/index-mayor-votes-leaning.html" scrolling="no" height="650" title="Mayor votes 2023 embedded content"></iframe>
+                <!-- <div class="graphic-bottom" style="margin-top: 32px;"> -->
+                    <!-- <p class="graphic-bottom__notetext" id="notetext">* Any further note to explain one aspect of the data could go here.</p> -->
+                    <!-- <p class="graphic-bottom__graphic-source" id="source">Source: City of Toronto</p> -->
+                    <!-- <p class="graphic-bottom__graphic-byline" id="byline">Toronto Star graphic</p> -->
+                <!-- </div> -->
+
+                <div class="dividerLine"></div>
+
+
+
+                <div class="graphic-top">
+                    <!-- <h2 class="graphic-top__graphic-hed">Crime can disproportionately impact different areas</h2> -->
+                    <h3 class="graphic-top__graphic-dek contextBlock">Growing gun violence in the city has been an ongoing issue. Between 2010 and 2014 there were decreasing numbers, but since 2015 the average doubled from the prvious decade. Between 2004 and 2022, Toronto saw 5,707 incidents of firearm discharges. In those, 699 people died, and there were 2,786 injuries. With only 379 in 2022, Toronto saw the least ammount of incidents since 2016 where there were 407. The worse year for toronto firearm discharges was 2019 where there were 492 incidents.</h3>
+                        
+                    <!-- <h3 class="graphic-top__graphic-dek contextBlock"></h3>As of publication date, Toronto has seen TKKTKTK incidents. At this rate 2023 will become the TKTKTK[best/worse] year for gun violence cinse 2014.<h3> -->
+                    <h3 class="graphic-top__graphic-dek graphHed">Shootings and firearm discharges, 2014-2023</h3>
+                    <p class="graphic-bottom__graphic-source" id="source">Source: City of Toronto</p>
+
+                    <span class="interactive-graphic-cta interactive-graphic-cta__desktop"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Hover.svg" height="23px">Hover on each area for more information</span><span class="interactive-graphic-cta interactive-graphic-cta__mobile"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Tap.svg" height="23px">Tap on each area for more information</span>
+            
+                    <!-- <div class="graphic-legend">
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-1"></div><p class="graphic-legend-text">Legend text 1</p>
+                        </div>
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-2"></div><p class="graphic-legend-text">Legend text 2</p>
+                        </div>
+                    </div> -->
+                </div>
+                <style>#firearm-discharges{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="firearm-discharges" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/_all-in-one/index-firearm-discharges.html" scrolling="no" height="600" title="Firearm discharges embedded content"></iframe>
+                <!-- <div class="graphic-bottom"> -->
+                    <!-- <p class="graphic-bottom__notetext" id="notetext">* Any further note to explain one aspect of the data could go here.</p> -->
+                    <!-- <p class="graphic-bottom__graphic-source" id="source">Source: City of Toronto</p> -->
+                    <!-- <p class="graphic-bottom__graphic-byline" id="byline">Toronto Star graphic</p> -->
+                <!-- </div> -->
+
+                <div class="dividerLine"></div>
+
+
+
+                
+                <div class="graphic-top">
+                    <!-- <h2 class="graphic-top__graphic-hed">Car thefts per 100,000 people, 2022</h2> -->
+                    <h3 class="graphic-top__graphic-dek contextBlock">Car thefts in Toronto have been on a steady increase since 2015. In Toronto as a whole, there were 9,606 vehicle thefts in 2022. That's almost triple the amount of thefts in 2015, when 3,284 vehicles were stolen within the city.<h3>
+                    <h3 class="graphic-top__graphic-dek graphHed">Car thefts per 100,000 people, 2022</h3>
+                    <p class="graphic-bottom__graphic-source" id="source">Source: City of Toronto. Toronto Police Service</p>
+
+                    <span class="interactive-graphic-cta interactive-graphic-cta__desktop"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Hover.svg" height="23px">Hover on each area for more information</span><span class="interactive-graphic-cta interactive-graphic-cta__mobile"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Tap.svg" height="23px">Tap on each area for more information</span>
+
+                    <!-- <div class="graphic-legend">
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-1"></div><p class="graphic-legend-text">Legend text 1</p>
+                        </div>
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-2"></div><p class="graphic-legend-text">Legend text 2</p>
+                        </div>
+                    </div> -->
+                </div>
+                <style>#toronto-crime-car-thefts{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="toronto-crime-car-thefts" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/_all-in-one/index-crime-car-thefts.html" scrolling="no" height="650" title="Vehicle thefts embedded content"></iframe>
+                <!-- <div class="graphic-bottom"> -->
+                    <!-- <p class="graphic-bottom__notetext" id="notetext">* Any further note to explain one aspect of the data could go here.</p> -->
+                    <!-- <p class="graphic-bottom__graphic-source" id="source">Source: City of Toronto</p> -->
+                    <!-- <p class="graphic-bottom__graphic-byline" id="byline">Toronto Star graphic</p> -->
+                <!-- </div> -->
+
+<script src="./js/topIllo.js"></script>
+
+<script>
+
+
+    function resize(){
+        var message = {'resize': 
+                  {
+                    'iframe':'graphic-iframe-1',
+                    'height': document.getElementsByClassName('graphic-1')[0].offsetHeight + 20
+                  }
+                };
+       
+        parent.postMessage(message, "*");
+    };
+
+    window.addEventListener('load', function() {
+        resize();
+    });
+
+    window.addEventListener("resize", function(){
+        resize();
+    });
+
+    setTimeout(function() {
+                        resize();
+                    }, 800);
+
+  
+	document.addEventListener("touchstart", function(){}, true);
+
+</script>
+
+<!-- <style>#graphic-iframe-1{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="graphic-iframe-1" src="SOURCETKTKTKT" scrolling="no" height="650" title="embedded content"></iframe> -->
+
+</body>
+</html>

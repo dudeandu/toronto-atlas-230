@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Toronto Star graphic template</title>
+    <link rel="stylesheet" href="https://misc.thestar.com/interactivegraphic/assets/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"> 
+
+    <link rel="stylesheet" type="text/css" href="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/cta-style.css">
+
+    <script src="https://misc.thestar.com/interactivegraphic/libraries/d3v4.min.js"></script>
+    <script src="https://misc.thestar.com/interactivegraphic/libraries/topojson.v2.min.js"></script>
+
+<style>
+
+
+
+
+.graphic-wrapper .graphic-top {
+  max-width: 690px;
+  margin: 30px auto 40PX;
+}
+
+.graphic-wrapper h2 {
+    /* text-transform: uppercase; */
+}
+
+.dividerLine {
+    margin:40px auto;
+    width:100%;
+    /* border-bottom: 1px solid #ccc; */
+}  .graphic-wrapper {
+    /* max-width: 660px; */
+  }
+
+.graphic-wrapper .graphic-top,
+  .graphic-wrapper .graphic-bottom {
+    max-width: 690px;
+    margin: 0 auto 0;
+  }
+  .graphic-wrapper .graphic-bottom {
+    margin-top: 20px;
+  }
+  
+  .graphic-wrapper h2 {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      text-transform: uppercase;
+  }
+  
+  .interactive-graphic-cta {
+      white-space: normal;
+  }
+  
+  .map-container {
+    width: 100%;
+    position: relative;
+    text-align: center;
+    margin: 0 0 16px;
+  }
+  
+  .map {
+    width: 100%;
+    display: inline-block;
+  }
+  
+  
+  .mapheading {
+    margin: 0;
+    letter-spacing: 1px;
+    font-size: 18px;
+    line-height: 1em;
+    padding: 5px 0 10px;
+    font-family: Helvetica;
+    color: #666;
+  }
+  
+  .ward, .ward25 {
+    stroke: #333;
+    stroke-width: 0.5px;
+    /*fill-opacity: 0.8;*/
+  }
+  
+   .active-node {
+        /* stroke: #F8F8F8; */
+        stroke: #000;
+        stroke-width: 1.5px;
+      }
+  
+  .scalevalue {
+    font-size: 13px;
+    color: #404040;
+  }
+  
+  
+  .scale {
+    fill: url(#gradient);
+  }
+  
+  #backbox {
+    fill-opacity: 0;
+  }
+  
+  .area-label {
+    font-size: 12px;
+    color: #333;
+    font-family: Helvetica, Arial, sans-serif;
+    text-anchor: middle;
+    pointer-events: none;
+  }
+  
+  .area-label.leftAligned {
+    text-anchor: start;
+  }
+  
+  .area-label-background {
+      stroke: #fff;
+      stroke-width: 3px;
+      stroke-opacity: 0.5;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+  }
+  
+  /*TOOLTIP*/
+  
+  #tooltip {
+      position: absolute;
+      width: 120px;
+      height: auto;
+      padding: 10px;
+      border-radius: 3px;
+      background-color: rgba(255,255,255,0.9);
+      -webkit-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+      -moz-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+      box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+      z-index: 100;
+      pointer-events: none;
+      font-family: helvetica, Arial, sans-serif;
+      text-align: left;
+  }
+  
+  #tooltip.hidden {
+      display: none;
+  }
+  
+  #tooltip #closebutton {
+    float: right;
+    position: relative;
+    height: 30px;
+    width: 30px;
+    margin: -5px -5px 0 0;
+    cursor: pointer;
+    display: none;
+  }
+  
+  #tooltip #closebutton .icon {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%,-50%);
+     color: #666;
+  
+  }
+  
+  #tooltip p {
+      margin: 0;
+      margin: 0;
+      line-height: 1.2em;
+      color: #404040;
+      letter-spacing: 0.2px;
+  }
+  
+  #tooltip .ttname {
+    font-size: 14px;
+  }
+  
+  #tooltip .ttvalue {
+    font-size: 20px;
+    padding-bottom: 0;
+  }
+  
+  #tooltip .ttvaluelabel {
+    font-size: 10px;
+    padding-top: 4px;
+    text-transform: uppercase;
+  }
+  
+  /*END OF TOOLTIP*/
+  
+  .legend-bottom {
+    text-align: center;
+     margin: 10px 0 0;
+     font-family: Helvetica, Arial, sans-serif;
+  }
+  
+  .graphic-legend {
+    /* width: 280px; */
+    width: 310px;
+    
+    vertical-align: top;
+    /*margin-bottom: 15px;*/
+    display: none;
+  }
+  
+  .active-legend {
+    display: inline-block;
+  }
+  
+  
+  .legendheading {
+    text-align: center;
+    margin: 0 auto;
+    padding-bottom: 5px;
+    color: #444;
+    font-size: 14px;
+    line-height: 1.1em;
+    max-width: 280px;
+  }
+  
+  .legendbox-container-1 {
+    /* width: 280px; */
+    width: 310px;
+    margin: 0 auto;
+  }
+  
+  .legendbox-container-2 {
+    width: 280px;
+    margin: 0 auto;
+  }
+  
+  .legendbox {
+    width: 35px;
+    height: 12px;
+    float: left;
+  }
+  
+  #legendbox1 {
+    background-color: #F8F8F8;
+    margin-right: 20px;
+    border: 1px solid #000;
+  }
+  
+  #legendbox2 {
+    background-color: #a7c85b;
+  }
+  
+  #legendbox3 {
+    background-color: #c4d890;
+  }
+  
+  #legendbox4 {
+    background-color: #dfe8c4;
+  }
+  
+  #legendbox5 {
+    background-color: #D0D0D0;
+  }
+  
+  #legendbox6 {
+    background-color: #b9b7de;
+  }
+  
+  #legendbox7 {
+    background-color: #777ac4;
+  }
+  
+  #legendbox8 {
+    background-color: #1b43a9;
+  }
+  
+  
+  
+  
+  
+  .legendnumber-container-1 {
+    margin: 24px auto 0;
+    /* padding-left: 17px; */
+  }
+  
+  .legendnumber {
+    width: 36px;
+    float: left;
+    color: #555;
+    font-size: 12px;
+    line-height: 1em;
+    margin: 0;
+  }
+  
+  
+  
+    #legendnumber1, 
+    #legendbox1 {
+        margin-left: 10px;
+        margin-right: 15px;
+      }
+  
+      #legendnumber2 {
+        margin-left: 15px;
+      }
+  
+  
+  
+  /*END OF LEGEND*/
+  
+  
+  
+  
+  
+  
+  
+  @media (max-width: 526px) {
+  
+  
+    .map-container {
+    width: 100%;
+    position: relative;
+    text-align: center;
+    margin: 0;
+    }
+  
+    .map {
+      width: 100%;
+      display: block;
+      padding-bottom: 15px;
+    }
+  
+  
+  
+  
+    #tooltip .ttname {
+      font-size: 13px;
+      padding-bottom: 4px;
+    }
+  
+    #tooltip .ttvalue {
+      font-size: 16px;
+      padding-bottom: 0;
+    }
+  
+    .area-label {
+      font-size: 9px;
+    }
+  
+    .area-label-background {
+      stroke-width: 2px;
+  }
+  
+  
+    
+  }
+  
+  .highlightCircle {
+    fill: none;
+    stroke: #333;
+    stroke-width: 1.5px;
+  }
+
+
+</style>
+</head>
+<body>
+  <div class="graphic-wrapper graphic-1">
+    <div class="graphic-top">
+        <h2 class="graphic-top__graphic-hed">Celebrating 130 years of Toronto: 11 ways to see the city</h2><br>
+        <h3 class="graphic-top__graphic-dek">As Toronto turns 230 on July 29th, we started thinking about the geography of the city, both physical and human. The following maps explore a quickly changing city, illuminating the divisions and challenges that define both its present and its future.</h3>
+
+        <!-- <div class="graphic-legend">
+            <div class="graphic-legend-container">
+                <div class="graphic-legend-dot" id="legend-dot-1"></div><p class="graphic-legend-text">Legend text 1</p>
+            </div>
+            <div class="graphic-legend-container">
+                <div class="graphic-legend-dot" id="legend-dot-2"></div><p class="graphic-legend-text">Legend text 2</p>
+            </div>
+        </div> -->
+    </div>
+
+    <!-- <div class="graphic">
+    </div>
+    <div class="graphic-bottom">
+        <p class="graphic-bottom__notetext" id="notetext">* Any further note to explain one aspect of the data could go here.</p>
+        <p class="graphic-bottom__graphic-source" id="source">Source: Stats report</p>
+        <p class="graphic-bottom__graphic-byline" id="byline">Toronto Star graphic</p>
+    </div>
+  </div> -->
+
+  <div id="map-density" class="map"></div>
+  <div class="dividerLine"></div>
+  <div id="map-households" class="map"></div>
+  <div class="dividerLine"></div>
+  <div id="map-pop-change" class="map"></div>
+  <div class="dividerLine"></div>
+  <div id="map-age-change" class="map"></div>
+  <div class="dividerLine"></div>
+  <div id="map-median-income" class="map"></div>
+  <div class="dividerLine"></div>
+  <div id="map-generations" class="map"></div>
+  <div class="dividerLine"></div>
+  <div id="map-house-prices" class="map"></div>
+  <div class="dividerLine"></div>
+  <div id="map-tree-coverage" class="map"></div>
+  <div class="dividerLine"></div>
+  <div id="map-mayoral-votes-leaning" class="map"></div>
+  <div class="dividerLine"></div>
+  <div id="map-firearm-discharges" class="map"></div>
+  <div class="dividerLine"></div>
+  <div id="map-crime-car-thefts" class="map"></div>
+
+<script src="js/age-difference.js"></script>
+<script src="js/crime-car-thefts.js"></script>
+<script src="js/density.js"></script>
+<script src="js/firearm-discharges.js"></script>
+<script src="js/generations.js"></script>
+<script src="js/homeprices.js"></script>
+<script src="js/household-dwellings.js"></script>
+<script src="js/household-incomes.js"></script>
+<script src="js/mayor-votes.js"></script>
+<script src="js/pop-change.js"></script>
+<script src="js/tree-coverage.js"></script>
+
+<script>
+
+    function resize(){
+        var message = {'resize': 
+                  {
+                    'iframe':'graphic-iframe-1',
+                    'height': document.getElementsByClassName('graphic-1')[0].offsetHeight + 20
+                  }
+                };
+       
+        parent.postMessage(message, "*");
+    };
+
+    window.addEventListener('load', function() {
+        resize();
+    });
+
+    window.addEventListener("resize", function(){
+        resize();
+    });
+
+    setTimeout(function() {
+                        resize();
+                    }, 800);
+
+  
+	document.addEventListener("touchstart", function(){}, true);
+
+</script>
+
+<!-- <style>#graphic-iframe-1{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="graphic-iframe-1" src="SOURCETKTKTKT" scrolling="no" height="850" title="embedded content"></iframe> -->
+
+</body>
+</html>
