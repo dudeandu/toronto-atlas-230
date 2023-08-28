@@ -1,0 +1,654 @@
+[%-
+macro seaTorontoMaps(); 
+seaPath = "torontomaps";
+compPath = util_comFile('torstar_special_articles','1.js','path':'') | replace("scripts/1.js","");
+compImgPath = compPath+"images/"+seaPath;
+compJSPath = compPath+"scripts/"+seaPath;
+compCSSPath+"styles/"+seaPath;
+
+cms.page.add_script(util_comFile('torstar_special_articles','topIllo.js','fPath':'scripts/'+seaPath), 'defer':true); 
+%]
+
+
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Toronto Star graphic template</title>
+    <link rel="stylesheet" href="https://misc.thestar.com/interactivegraphic/assets/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" type="text/css" href="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/cta-style.css">
+
+    <script src="https://misc.thestar.com/interactivegraphic/libraries/d3v4.min.js"></script>
+    <script src="https://misc.thestar.com/interactivegraphic/libraries/topojson.v2.min.js"></script>
+
+
+    <style>
+
+
+
+        .graphic-wrapper {
+            padding: 0;
+        }
+        
+        .graphic-wrapper .graphic-top {
+          max-width: 690px;
+          margin: 30px auto 0;
+        }
+        
+        h2.graphic-top__graphic-hed {
+            padding-bottom: 12px;
+        }
+        
+        .sa_topIllustration {
+            position: relative;
+            width: 210px;
+            height: 108px;
+            margin: 0 auto;
+        }
+        
+        .sa_topIllustration img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        .graphic-wrapper .graphic-top,
+          .graphic-wrapper .graphic-bottom {
+            max-width: 600px;
+            margin: 0 auto 0;
+            padding-bottom: 0;
+          }
+          .graphic-wrapper .graphic-bottom {
+            margin-top: 20px;
+          }
+          
+          .graphic-wrapper h2,
+          .graphic-top h2.graphic-top__graphic-hed.smallHeader:first-of-type {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+              font-size: 24px;
+              font-weight: 600;
+              /* text-transform: uppercase; */
+              text-align: center;
+          }
+          
+          .graphic-wrapper .graphic-top p {
+              font-family: 'Inter', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+              font-size: 22px;
+              font-weight: 600;
+              text-transform: uppercase;
+              text-align: center;
+            }
+        
+          .graphic-wrapper .graphic-top .sa_topIllustration {
+            margin: 80px auto 0;
+          }
+
+          @media (max-width: 425px) { 
+                .graphic-wrapper .graphic-top .sa_topIllustration {
+                margin: 40px auto 0;
+                }
+          }
+        
+          .graphic-wrapper .graphic-top p.section {
+            color: #0077BB;
+            font-size: 16px;
+            margin: 20px auto;
+          }
+          
+          .graphic-wrapper .graphic-top p.sa_author {
+            margin: 80px 0 0;
+            color: #0077BB;
+            text-transform: none;
+            line-height: 17px;
+          }
+
+.graphic-wrapper .graphic-top p.sa_author:nth-child(6) {
+    margin: 80px 0 20px;
+}
+
+@media (min-width: 356px) {
+
+
+  .graphic-wrapper .graphic-top p.sa_author:nth-child(6) {
+      margin: 80px 0 6px;
+  }
+  
+  }
+        
+          .graphic-wrapper .graphic-top a {
+            color: #0077BB;
+            text-decoration: none;
+            font-size: 16px;
+          }
+          
+          .graphic-wrapper .graphic-top a:hover, 
+          .graphic-wrapper .graphic-top a:focus {
+            color: #707070;
+          }
+          .graphic-wrapper .graphic-top a:visited {
+            color: #0077BB;
+          }
+        
+        
+          .graphic-wrapper .graphic-top p.sa_pubDate {
+            margin: 6px 0 0;
+            color: #666;
+            font-size: 16px;
+            text-transform: none;
+            font-weight: 400;
+          }
+          
+          .graphic-wrapper .graphic-top__graphic-dek {
+              text-align: justify;
+              padding-bottom: 4px;
+          }
+        
+          .graphic-top__graphic-dek.graphHed {
+            text-transform: uppercase;
+            font-weight: 600;
+              text-align: center;
+          }
+        
+          .graphic-top__graphic-dek.contextBlock {
+            margin-bottom: 32px;
+          }
+        
+          .graphic-wrapper .graphic-top:first-of-type {
+            margin-bottom: 80px;
+          }
+        
+          .graphic-wrapper .graphic-top:first-of-type h2 {
+          font-size: 30px;
+          line-height: 1.2em;
+          padding-bottom: 4px;
+          font-family: "TorstarDeckCondensed", Georgia, "Times New Roman", Times, serif;
+          color: #000;
+          text-rendering: optimizeLegibility;
+          font-weight: normal;
+          font-style: normal;
+          text-transform: none;
+          -moz-osx-font-smoothing: grayscale;
+        }
+          @media (min-width: 526px) {
+            .graphic-wrapper .graphic-top:first-of-type h2 {
+              font-size: 42px; } }
+          @media (min-width: 592px) {
+            .graphic-wrapper .graphic-top:first-of-type h2 {
+              font-size: 48px; } }
+        
+        
+        .graphic-top p.graphic-bottom__graphic-source {
+            /* display: block; */
+          margin: 0 auto;
+          width: 100%;
+          padding-bottom: 4px;
+          font-size: 11px;
+          line-height: 1.35em;
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+          color: #B8B8B8;
+          text-align: center;
+          text-rendering: optimizeLegibility;
+          text-transform: uppercase; 
+        }
+        
+          @media (min-width: 526px) {
+            .graphic-top p.graphic-bottom__graphic-source {
+              max-width: 100%;
+              width: 100%;
+              vertical-align: top;
+              /* float: left; */
+              font-size: 12px; } 
+            
+            }
+        
+        .interactive-graphic-cta {
+            white-space: normal;
+            text-align: center;
+            width: 100%;
+        }
+
+        .interactive-graphic-cta-image {
+            transform: translateY(-6px);
+        }
+        
+        .dividerLine {
+            margin: 0 auto;
+            width:100%;
+            height: 100px;
+            /* border-bottom: 1px solid #ccc; */
+        }
+        
+        .dividerLine.smallLine {
+            margin:60px auto;
+            width:50px;
+            border-bottom: 1px solid #ccc;
+            height: 0;
+        }
+        
+        .breaker-container{
+            display: flex;
+            align-content: space-between;
+            /* flex-wrap: wrap; */
+            margin:60px auto;
+            width:300px;
+        }
+        
+        .imgContainer {
+            width: 150px
+        }
+        
+        .noBreak {
+            white-space: nowrap;
+        }
+        
+        @media (max-width: 526px) {
+        
+            .graphic-wrapper {
+                padding: 0 4px;
+            }
+        
+            .graphic-top__graphic-dek,
+            .graphic-bottom__graphic-source {
+            padding-left: 8px;
+            padding-right: 8px;
+            }
+        
+            .map
+        
+              .dividerLine {
+                  height: 60px;
+              }
+          
+          }
+        
+        @media (max-width: 412px) {
+        
+              .dividerLine {
+                  height: 40px;
+              }
+          
+          }
+        
+        
+        </style>
+
+<div class="graphic-wrapper graphic-1">
+    <div class="graphic-top" style="margin-bottom: 0;">
+        <div id="topIllo" class="sa_topIllustration">
+            <!-- <img id="loopThisTopImg" src="" alt="a small map of toronto"> -->
+            <img class="fade-image" src="[% compImgPath %]/topillo0.png" alt="a small map of toronto" style="opacity: 1;">
+            <img class="fade-image" src="[% compImgPath %]/topillo1.png" alt="a small map of toronto">
+            <img class="fade-image" src="[% compImgPath %]/topillo2.png" alt="a small map of toronto">
+            <img class="fade-image" src="[% compImgPath %]/topillo3.png" alt="a small map of toronto">
+        </div>
+        <p class="section">Mapping Toronto</p>
+        <h2 class="graphic-top__graphic-hed">Toronto is 230 years old, these nine maps tell you who we are today</h2><br>
+        <h3 class="graphic-top__graphic-dek">Sunday marks 230 years since what is now Toronto was settled by the British on lands that were part of a disputed purchase from the Mississaugas of the New Credit First Nation (a purchase later clarified in 1805’s Treaty 13, which itself was subject to dispute until a claim settlement in 2010). On August 27th 1793, Lt.-Gov. John Graves Simcoe founded what was initially called the Town of York as Upper Canada’s capital. We’ve changed a lot from the forested lakeside wilderness of that time, growing into a city of 3 million. To mark the occasion, the Star created nine maps that provide a snapshot of how those millions live together today — from income to crime to demographics and growth, they illuminate the city we are, and the city we’re becoming.</h3>
+        <p class="sa_author"><a href="https://www.thestar.com/users/profile/andres-plana/" target="_blank">Graphics by Andres Plana, <span class="noBreak">Digital Designer</span></a></p>
+        <p class="sa_author" style="margin-top: 0;"><a href="https://www.thestar.com/users/profile/edward-keenan/" target="_blank">Analysis by Edward Kennan, <span class="noBreak">City Columnist</span></a></p>
+</div>
+
+
+[% paywallStart();%] 
+
+<div class="graphic-top" style="padding-top: 0;">
+        <p class="sa_pubDate subscriber-preview">August 25, 2023</p>
+
+
+        <!-- <div class="graphic-legend">
+            <div class="graphic-legend-container">
+                <div class="graphic-legend-dot" id="legend-dot-1"></div><p class="graphic-legend-text">Legend text 1</p>
+            </div>
+            <div class="graphic-legend-container">
+                <div class="graphic-legend-dot" id="legend-dot-2"></div><p class="graphic-legend-text">Legend text 2</p>
+            </div>
+        </div> -->
+    </div>
+
+    [% subPaywallDisplay(); %]
+    [% subContentStart(); %]
+
+
+    <div class="shareIcons" style="clear:both"><div class="share-container content-above" data-subscription-required-remove=""><ul class="social-share-links hidden-print list-inline icon" data-lpos="asset|share-toolbar"style="width: fit-content;margin: 0 auto;><li class="social-share-link fb"><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.thestar.com/interactives/toronto-is-230-years-old-these-nine-maps-tell-you-who-we-are-today/article_7bf57a36-2bd1-11ee-95c7-9f3d3702ca73.html%3Futm_medium%3Dsocial%26utm_source%3Dfacebook%26utm_campaign%3Duser-share" class="tnt-share-link fb" target="_blank" rel="noopener nofollow" title="Share on Facebook" data-toggle="new-window" data-new-window-width="500" data-new-window-height="300" data-track="{&quot;network&quot;:&quot;Facebook&quot;,&quot;socialAction&quot;:&quot;post&quot;,&quot;url&quot;:&quot;/interactives/toronto-is-230-years-old-these-nine-maps-tell-you-who-we-are-today/article_7bf57a36-2bd1-11ee-95c7-9f3d3702ca73.html&quot;}" data-tncms-track-event="{&quot;app&quot;:&quot;editorial&quot;,&quot;metric&quot;:&quot;social_share&quot;,&quot;uuid&quot;:&quot;7bf57a36-2bd1-11ee-95c7-9f3d3702ca73&quot;}" data-tncms-track-dmp="Social Media Share"><span class="tnt-stack"><svg class="tnt-svg tnt-facebook-f tnt-w-9 tnt-stack-1x" aria-hidden="true" data-prefix="fab" data-icon="facebook-f" role="presentation" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 264 512" data-fa-i2svg=""><path fill="currentColor" d="M76.7 512V283H0v-91h76.7v-71.7C76.7 42.4 124.3 0 193.8 0c33.3 0 61.9 2.5 70.2 3.6V85h-48.2c-37.8 0-45.1 18-45.1 44.3V192H256l-11.7 91h-73.6v229"></path></svg></span><span class="sr-only">Facebook</span></a></li><li class="social-share-link tw"><a href="https://twitter.com/intent/tweet?&amp;text=Think%20you%20know%20Toronto?%20These%209%20maps%20show%20how%20our%20city%20is%20growing,%20moving%20and%20how%20expensive%20it%20is%20to%20live%20here&amp;via=torontostar&amp;url=https%3A%2F%2Fwww.thestar.com/interactives/toronto-is-230-years-old-these-nine-maps-tell-you-who-we-are-today/article_7bf57a36-2bd1-11ee-95c7-9f3d3702ca73.html%3Futm_medium%3Dsocial%26utm_source%3Dtwitter%26utm_campaign%3Duser-share" class="tnt-share-link tw" target="_blank" rel="noopener nofollow" title="Tweet" data-toggle="new-window" data-new-window-width="500" data-new-window-height="300" data-track="{&quot;network&quot;:&quot;Twitter&quot;,&quot;socialAction&quot;:&quot;tweet&quot;,&quot;url&quot;:&quot;/interactives/toronto-is-230-years-old-these-nine-maps-tell-you-who-we-are-today/article_7bf57a36-2bd1-11ee-95c7-9f3d3702ca73.html&quot;}" data-tncms-track-event="{&quot;app&quot;:&quot;editorial&quot;,&quot;metric&quot;:&quot;social_share&quot;,&quot;uuid&quot;:&quot;7bf57a36-2bd1-11ee-95c7-9f3d3702ca73&quot;}" data-tncms-track-dmp="Social Media Share"><span class="tnt-stack"><svg class="tnt-svg tnt-twitter tnt-w-16 tnt-stack-1x" aria-hidden="true" data-prefix="fab" data-icon="twitter" role="presentation" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg></span><span class="sr-only">Twitter</span></a></li><li class="social-share-link wa"><a href="https://www.thestar.com/interactives/toronto-is-230-years-old-these-nine-maps-tell-you-who-we-are-today/article_7bf57a36-2bd1-11ee-95c7-9f3d3702ca73.html" class="tnt-share-link wa" target="_blank" rel="noopener nofollow" title="WhatsApp" data-toggle="new-window" data-new-window-width="500" data-new-window-height="300" data-track="{&quot;network&quot;:&quot;WhatsApp&quot;,&quot;socialAction&quot;:&quot;share&quot;,&quot;url&quot;:&quot;/interactives/toronto-is-230-years-old-these-nine-maps-tell-you-who-we-are-today/article_7bf57a36-2bd1-11ee-95c7-9f3d3702ca73.html&quot;}" data-tncms-track-event="{&quot;app&quot;:&quot;editorial&quot;,&quot;metric&quot;:&quot;social_share&quot;,&quot;uuid&quot;:&quot;7bf57a36-2bd1-11ee-95c7-9f3d3702ca73&quot;}" data-tncms-track-dmp="Social Media Share"><span class="tnt-stack"><svg class="tnt-svg tnt-whatsapp tnt-w-14 tnt-stack-1x" aria-hidden="true" data-prefix="fab" data-icon="whatsapp" role="presentation" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg></span><span class="sr-only">WhatsApp</span></a></li><li class="social-share-link lin"><a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.thestar.com/interactives/toronto-is-230-years-old-these-nine-maps-tell-you-who-we-are-today/article_7bf57a36-2bd1-11ee-95c7-9f3d3702ca73.html" class="tnt-share-link lin" target="_blank" rel="noopener nofollow" title="Share on LinkedIn" data-toggle="new-window" data-new-window-width="500" data-new-window-height="300" data-track="{&quot;network&quot;:&quot;LinkedIn&quot;,&quot;socialAction&quot;:&quot;post&quot;,&quot;url&quot;:&quot;/interactives/toronto-is-230-years-old-these-nine-maps-tell-you-who-we-are-today/article_7bf57a36-2bd1-11ee-95c7-9f3d3702ca73.html&quot;}" data-tncms-track-event="{&quot;app&quot;:&quot;editorial&quot;,&quot;metric&quot;:&quot;social_share&quot;,&quot;uuid&quot;:&quot;7bf57a36-2bd1-11ee-95c7-9f3d3702ca73&quot;}" data-tncms-track-dmp="Social Media Share"><span class="tnt-stack"><svg class="tnt-svg tnt-linkedin-in tnt-w-14 tnt-stack-1x" aria-hidden="true" data-prefix="fab" data-icon="linkedin-in" role="presentation" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M100.3 480H7.4V180.9h92.9V480zM53.8 140.1C24.1 140.1 0 115.5 0 85.8 0 56.1 24.1 32 53.8 32c29.7 0 53.8 24.1 53.8 53.8 0 29.7-24.1 54.3-53.8 54.3zM448 480h-92.7V334.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V480h-92.8V180.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V480z"></path></svg></span><span class="sr-only">LinkedIn</span></a></li><li class="social-share-link sms" style="display:none"><a href="sms:?body=Check%20out%20this%20link:%20www.thestar.com/tncms/asset/editorial/7bf57a36-2bd1-11ee-95c7-9f3d3702ca73" class="tnt-share-link sms" title="SMS" data-track="{&quot;category&quot;:&quot;tnt-sms&quot;,&quot;action&quot;:&quot;share&quot;,&quot;label&quot;:&quot;editorial-article&quot;,&quot;value&quot;:&quot;&quot;}" data-tncms-track-event="{&quot;app&quot;:&quot;editorial&quot;,&quot;metric&quot;:&quot;sms&quot;,&quot;uuid&quot;:&quot;7bf57a36-2bd1-11ee-95c7-9f3d3702ca73&quot;}" data-tncms-track-dmp="SMS Share" rel="nofollow"><span class="tnt-stack"><svg class="tnt-svg tnt-comment-alt-dots tnt-w-16 tnt-stack-1x" aria-hidden="true" data-prefix="fas" data-icon="comment-alt-dots" role="presentation" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M448 0H64C28.7 0 0 28.7 0 64v288c0 35.3 28.7 64 64 64h96v84c0 9.8 11.2 15.5 19 9.7L304 416h144c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64zM161.5 207.7c0 17.7-14.4 32-32 32-17.7 0-32-14.3-32-32s14.3-32 32-32c17.6 0 32 14.3 32 32zm127.3 0c0 17.7-14.3 32-32 32-17.6 0-32-14.3-32-32s14.4-32 32-32c17.7 0 32 14.3 32 32zm128 0c0 17.7-14.3 32-32 32s-32-14.3-32-32 14.4-32 32-32 32 14.3 32 32z"></path></svg></span><span class="sr-only">SMS</span></a></li><li class="social-share-link em"><a href="mailto:?subject=%5BThink%20you%20know%20Toronto?%20These%209%20maps%20show%20how%20our%20city%20is%20growing,%20moving%20and%20how%20expensive%20it%20is%20to%20live%20here&amp;body=https%3A%2F%2Fwww.thestar.com/interactives/toronto-is-230-years-old-these-nine-maps-tell-you-who-we-are-today/article_7bf57a36-2bd1-11ee-95c7-9f3d3702ca73.html%3Futm_medium%3Dsocial%26utm_source%3Demail%26utm_campaign%3Duser-share" class="tnt-share-link em email-share-link" title="Email" data-track="{&quot;category&quot;:&quot;tnt-email&quot;,&quot;action&quot;:&quot;share&quot;,&quot;label&quot;:&quot;editorial-article&quot;,&quot;value&quot;:&quot;&quot;}" data-tncms-track-event="{&quot;app&quot;:&quot;editorial&quot;,&quot;metric&quot;:&quot;email&quot;,&quot;uuid&quot;:&quot;7bf57a36-2bd1-11ee-95c7-9f3d3702ca73&quot;}" data-tncms-track-dmp="Email Share" rel="nofollow"><span class="tnt-stack"><svg class="tnt-svg tnt-envelope tnt-w-16 tnt-stack-1x" aria-hidden="true" data-prefix="fas" data-icon="envelope" role="presentation" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path></svg></span><span class="sr-only">Email</span></a></li><li class="social-share-link pr"><a href="javascript:window.print()" class="pr" title="Print" data-track="{&quot;network&quot;:&quot;Print&quot;,&quot;socialAction&quot;:&quot;print&quot;,&quot;url&quot;:&quot;/interactives/toronto-is-230-years-old-these-nine-maps-tell-you-who-we-are-today/article_7bf57a36-2bd1-11ee-95c7-9f3d3702ca73.html&quot;}" data-tncms-track-event="{&quot;app&quot;:&quot;editorial&quot;,&quot;metric&quot;:&quot;social_share&quot;,&quot;uuid&quot;:&quot;7bf57a36-2bd1-11ee-95c7-9f3d3702ca73&quot;}" data-tncms-track-dmp="Social Media Share" rel="nofollow"><span class="tnt-stack"><svg class="tnt-svg tnt-print tnt-w-16 tnt-stack-1x" aria-hidden="true" data-prefix="fas" data-icon="print" role="presentation" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M464 192h-16V81.941a24 24 0 0 0-7.029-16.97L383.029 7.029A24 24 0 0 0 366.059 0H88C74.745 0 64 10.745 64 24v168H48c-26.51 0-48 21.49-48 48v132c0 6.627 5.373 12 12 12h52v104c0 13.255 10.745 24 24 24h336c13.255 0 24-10.745 24-24V384h52c6.627 0 12-5.373 12-12V240c0-26.51-21.49-48-48-48zm-80 256H128v-96h256v96zM128 224V64h192v40c0 13.2 10.8 24 24 24h40v96H128zm304 72c-13.254 0-24-10.746-24-24s10.746-24 24-24 24 10.746 24 24-10.746 24-24 24z"></path></svg></span><span class="sr-only">Print</span></a></li></ul><form method="post" data-uuid="7bf57a36-2bd1-11ee-95c7-9f3d3702ca73" class="save-list-7bf57a36-2bd1-11ee-95c7-9f3d3702ca73-form save-asset-to-list" action="/users/admin/list/"><input type="hidden" name="action" value="addasset"> <input type="hidden" name="format" value="json"> <input type="hidden" name="listasset" value="7bf57a36-2bd1-11ee-95c7-9f3d3702ca73"> <input type="hidden" name="listapp" value="editorial"> <input type="hidden" name="autocreate" value="true"> <input type="hidden" name="listname" value="articles"> <input class="hide" type="submit" name="submit" value="Save"></form></div></div>
+
+    <!-- <div class="breaker-container">
+        <div class="dividerLine smallLine"></div>
+        <div class="imgContainer">
+            <img src="./img/breaker/to-skyline.svg" alt="an illustrated skyline of Toronto">
+        </div>
+        <div class="dividerLine smallLine"></div>
+    </div> -->
+
+    <!-- <div class="graphic">
+    </div>
+    <div class="graphic-bottom">
+        <p class="graphic-bottom__notetext" id="notetext">* Any further note to explain one aspect of the data could go here.</p>
+        <p class="graphic-bottom__graphic-source" id="source">Source: Stats report</p>
+        <p class="graphic-bottom__graphic-byline" id="byline">Toronto Star graphic</p>
+    </div>
+  </div> -->
+                <div class="graphic-top">
+                    <h2 class="graphic-top__graphic-hed smallHeader">Population density in an increasingly crowded city</h2>
+                    <h3 class="graphic-top__graphic-dek contextBlock">We aren’t evenly spread out. It’s no surprise the downtown core is up to 15 times more dense than the single-family subdivisions of Etobicoke and Scarborough. But check out the even more densely populated downtown North York (with as many as 45,222 people per sq. km.), just blocks away from subdivisions with fewer than 2,200 per sq. km., illustrating the extreme contrasts that have emerged in neighbourhood development. </h3>
+                    <h3 class="graphic-top__graphic-dek graphHed">Population density, 2021</h3>
+                    <p class="graphic-bottom__graphic-source" id="source">Source: Statistics Canada</p>
+
+                    <span class="interactive-graphic-cta interactive-graphic-cta__desktop"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Hover.svg" height="23px">Hover on each area for more information</span><span class="interactive-graphic-cta interactive-graphic-cta__mobile"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Tap.svg" height="23px">Tap on each area for more information</span>
+
+                    <!-- <div class="graphic-legend">
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-1"></div><p class="graphic-legend-text">Legend text 1</p>
+                        </div>
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-2"></div><p class="graphic-legend-text">Legend text 2</p>
+                        </div>
+                    </div> -->
+                </div>
+                <style>#toronto-density{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="toronto-density" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/_all-in-one/index-density.html" scrolling="no" height="650" title="Population density embedded content"></iframe>
+                
+                <!-- <div class="graphic-bottom"> -->
+                    <!-- <p class="graphic-bottom__notetext" id="notetext">* Any further note to explain one aspect of the data could go here.</p> -->
+                    <!-- <p class="graphic-bottom__graphic-source" id="source">Source: Statistics Canada</p> -->
+                    <!-- <p class="graphic-bottom__graphic-byline" id="byline">Toronto Star graphic</p> -->
+                <!-- </div> -->
+                
+                <div class="dividerLine"></div>
+
+
+                
+                <!-- <div class="graphic-top"> -->
+                    <!-- <h2 class="graphic-top__graphic-hed">Total households, 2021</h2> -->
+                    <!-- <h3 class="graphic-top__graphic-dek graphHed">Total households, 2021</h3> -->
+
+                    <!-- <span class="interactive-graphic-cta interactive-graphic-cta__desktop"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Hover.svg" height="23px">Hover on each area for more information</span><span class="interactive-graphic-cta interactive-graphic-cta__mobile"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Tap.svg" height="23px">Tap on each area for more information</span> -->
+
+                    <!-- <div class="graphic-legend">
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-1"></div><p class="graphic-legend-text">Legend text 1</p>
+                        </div>
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-2"></div><p class="graphic-legend-text">Legend text 2</p>
+                        </div>
+                    </div> -->
+                <!-- </div> -->
+                <!-- <style>#toronto-household-dwellings{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="toronto-household-dwellings" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/_all-in-one/index-household-dwellings.html" scrolling="no" height="650" title="Private households embedded content"></iframe> -->
+                <!-- <div class="graphic-bottom"> -->
+                    <!-- <p class="graphic-bottom__notetext" id="notetext">* Any further note to explain one aspect of the data could go here.</p> -->
+                    <!-- <p class="graphic-bottom__graphic-source" id="source">Source: Statistics Canada</p> -->
+                    <!-- <p class="graphic-bottom__graphic-byline" id="byline">Toronto Star graphic</p> -->
+                <!-- </div> -->
+
+                <!-- <div class="dividerLine"></div> -->
+
+
+
+                <div class="graphic-top" style="margin-bottom: 0;">
+                    <h2 class="graphic-top__graphic-hed">Growing in places, <span class="noBreak">shrinking in others</span></h2>
+                    <h3 class="graphic-top__graphic-dek contextBlock">Toronto’s growth is also unevenly developing. Predictably, the neighbourhoods (downtown, midtown, uptown) where highrise condos have become defining landmarks have been growing fastest. But what’s interesting and maybe troubling  is that in a growing city with a housing crisis, the population along much of the Bloor subway line has actually been shrinking. </h3>
+                    <h3 class="graphic-top__graphic-dek graphHed">Population change between 2016 and 2021</h3>
+                    <p class="graphic-bottom__graphic-source" id="source">Source: Statistics Canada</p>
+                    
+            
+                    <span class="interactive-graphic-cta interactive-graphic-cta__desktop"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Hover.svg" height="23px">Hover on each area for more information</span><span class="interactive-graphic-cta interactive-graphic-cta__mobile"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Tap.svg" height="23px">Tap on each area for more information</span>
+            
+                    <!-- <div class="graphic-legend">
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-1"></div><p class="graphic-legend-text">Legend text 1</p>
+                        </div>
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-2"></div><p class="graphic-legend-text">Legend text 2</p>
+                        </div>
+                    </div> -->
+                </div>
+                <style>#toronto-pop-change{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="toronto-pop-change" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/_all-in-one/index-pop-change.html" scrolling="no" height="650" title="Population change embedded content"></iframe>
+                <!-- <div class="graphic-bottom"> -->
+                    <!-- <p class="graphic-bottom__notetext" id="notetext">* Any further note to explain one aspect of the data could go here.</p> -->
+                    <!-- <p class="graphic-bottom__graphic-source" id="source">Source: Statistics Canada</p> -->
+                    <!-- <p class="graphic-bottom__graphic-byline" id="byline">Toronto Star graphic</p> -->
+                <!-- </div> -->
+
+                <div class="dividerLine"></div>
+
+
+
+                <div class="graphic-top">
+                    <h2 class="graphic-top__graphic-hed">A city that’s mostly <span class="noBreak">getting older</span></h2>
+                    <h3 class="graphic-top__graphic-dek contextBlock">Toronto’s population growth isn’t coming from the birth of children, as the population of many areas — particularly the most established and wealthiest — has been getting older. Toronto’s “Benjamin Button” neighbourhood, where the average population has dropped more than 37 years since 2016, is near Victoria Park and the 401— leading just a handful of pockets spread across the city getting more youthful.</h3>
+                    <h3 class="graphic-top__graphic-dek graphHed">Change in the average age between <span class="noBreak">2016 and 2021</span></h3>
+                    <p class="graphic-bottom__graphic-source" id="source">Source: Statistics Canada</p>
+
+                    <span class="interactive-graphic-cta interactive-graphic-cta__desktop"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Hover.svg" height="23px">Hover on each area for more information</span><span class="interactive-graphic-cta interactive-graphic-cta__mobile"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Tap.svg" height="23px">Tap on each area for more information</span>
+            
+                    <!-- <div class="graphic-legend">
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-1"></div><p class="graphic-legend-text">Legend text 1</p>
+                        </div>
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-2"></div><p class="graphic-legend-text">Legend text 2</p>
+                        </div>
+                    </div> -->
+                </div>
+                <style>#toronto-age-difference{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="toronto-age-difference" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/_all-in-one/index-age-difference.html" scrolling="no" height="650" title="Average age change embedded content"></iframe>
+                <!-- <div class="graphic-bottom"> -->
+                    <!-- <p class="graphic-bottom__notetext" id="notetext">* Any further note to explain one aspect of the data could go here.</p> -->
+                    <!-- <p class="graphic-bottom__graphic-source" id="source">Source: Statistics Canada</p> -->
+                    <!-- <p class="graphic-bottom__graphic-byline" id="byline">Toronto Star graphic</p> -->
+                <!-- </div> -->
+
+                <div class="dividerLine"></div>
+
+
+
+                <div class="graphic-top">
+                    <h2 class="graphic-top__graphic-hed">The income-divide doughnut</h2>
+                    <!-- <h3 class="graphic-top__graphic-dek ">In 2021, the median total household income in Toronto was $84,000, an increase of about $18,000 since 2016. This is the lowest of all regions in the Greater Toronto<span class="noBreak"> and Hamilton Area.</span></h3> -->
+                    <h3 class="graphic-top__graphic-dek contextBlock">This map shows a red-hot midtown core on either side of Yonge Street, where the most affluent residents are clustered in and between Rosedale and the Bridle Path as if they’re filling a hole in a doughnut. That the city north of the 401 is home to people of more modest means is well-known, but the divide between affluent central Etobicoke and lower-income central Scarborough is stark.<h3>
+                    <h3 class="graphic-top__graphic-dek graphHed">Median household income, 2020</h3>
+                    <p class="graphic-bottom__graphic-source" id="source">Source: Statistics CANADA. City of Toronto</p>
+                    
+                    <span class="interactive-graphic-cta interactive-graphic-cta__desktop"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Hover.svg" height="23px">Hover on each area for more information</span><span class="interactive-graphic-cta interactive-graphic-cta__mobile"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Tap.svg" height="23px">Tap on each area for more information</span>
+            
+                    <!-- <div class="graphic-legend">
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-1"></div><p class="graphic-legend-text">Legend text 1</p>
+                        </div>
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-2"></div><p class="graphic-legend-text">Legend text 2</p>
+                        </div>
+                    </div> -->
+                </div>
+                <style>#toronto-median-household-income{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="toronto-median-household-income" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/_all-in-one/index-household-incomes.html" scrolling="no" height="650" title="Median household income embedded content"></iframe>
+                <!-- <div class="graphic-bottom"> -->
+                    <!-- <p class="graphic-bottom__notetext" id="notetext">* Any further note to explain one aspect of the data could go here.</p> -->
+                    <!-- <p class="graphic-bottom__graphic-source" id="source">Source: Statistics CANADA</p> -->
+                    <!-- <p class="graphic-bottom__graphic-byline" id="byline">Toronto Star graphic</p> -->
+                <!-- </div> -->
+
+                <div class="dividerLine"></div>
+
+
+
+                <div class="graphic-top">
+                    <h2 class="graphic-top__graphic-hed">A city of newcomers, <span class="noBreak">particularly in the north</span></h2>
+                    <h3 class="graphic-top__graphic-dek contextBlock">Toronto is a city of immigrants, though comparing where the highest concentrations of first-generation Canadians live in this map with the income map — north of the 401, or central Scarborough — paints a picture of newcomers still finding their feet economically. Part of north Agincourt is almost 95 per cent first-generation Canadians; at the other extreme, more than 85 per cent of one pocket of the Kingsway were born in Canada.</h3>
+                    <h3 class="graphic-top__graphic-dek graphHed">Percentage of first-generation Canadians in private dwellings, 2021</h3>
+                    <p class="graphic-bottom__graphic-source" id="source">Source: Statistics Canada</p>
+
+                    <span class="interactive-graphic-cta interactive-graphic-cta__desktop"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Hover.svg" height="23px">Hover on each area for more information</span><span class="interactive-graphic-cta interactive-graphic-cta__mobile"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Tap.svg" height="23px">Tap on each area for more information</span>
+            
+                    <!-- <div class="graphic-legend">
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-1"></div><p class="graphic-legend-text">Legend text 1</p>
+                        </div>
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-2"></div><p class="graphic-legend-text">Legend text 2</p>
+                        </div>
+                    </div> -->
+                </div>
+                <style>#toronto-first-generation-canadians{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="toronto-first-generation-canadians" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/_all-in-one/index-generations.html" scrolling="no" height="650" title="First generation canadians embedded content"></iframe>
+                <!-- <div class="graphic-bottom"> -->
+                    <!-- <p class="graphic-bottom__notetext" id="notetext">* Any further note to explain one aspect of the data could go here.</p> -->
+                    <!-- <p class="graphic-bottom__graphic-source" id="source">Source: Statistics Canada</p> -->
+                    <!-- <p class="graphic-bottom__graphic-byline" id="byline">Toronto Star graphic</p> -->
+                <!-- </div> -->
+
+                <div class="dividerLine"></div>
+
+
+
+                <div class="graphic-top">
+                    <h2 class="graphic-top__graphic-hed">There are fewer places to buy a home for less than $1 million</h2>
+                    <h3 class="graphic-top__graphic-dek contextBlock">Housing prices paint a picture similar to the income map: midtown neighbourhoods top $2 million, while many sub-million-dollar areas cluster in the northeast and northwest. Another apparently affordable area is in the downtown core, but condos there are measured in dozens of square feet and have maintenance fees. It may surprise that the Scarborough Bluffs pocket has pricier homes than the area including the Beaches.</h3>
+                    <h3 class="graphic-top__graphic-dek graphHed">Average home prices, July 2023</h3>
+                    <p class="graphic-bottom__graphic-source" id="source">Source: Toronto Regional Real Estate Board. Canadian Centre for Policy Alternatives</p>
+
+                    <span class="interactive-graphic-cta interactive-graphic-cta__desktop"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Hover.svg" height="23px">Hover on each area for more information</span><span class="interactive-graphic-cta interactive-graphic-cta__mobile"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Tap.svg" height="23px">Tap on each area for more information</span>
+            
+                    <!-- <div class="graphic-legend">
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-1"></div><p class="graphic-legend-text">Legend text 1</p>
+                        </div>
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-2"></div><p class="graphic-legend-text">Legend text 2</p>
+                        </div>
+                    </div> -->
+                </div>
+                <style>#toronto-housing-prices{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="toronto-housing-prices" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/_all-in-one/index-housing-prices.html" scrolling="no" height="650" title="House prices embedded content"></iframe>
+                <!-- <div class="graphic-bottom"> -->
+                    <!-- <p class="graphic-bottom__notetext" id="notetext">* Any further note to explain one aspect of the data could go here.</p> -->
+                    <!-- <p class="graphic-bottom__graphic-source" id="source">Source: Toronto Regional Real Estate Board</p> -->
+                    <!-- <p class="graphic-bottom__graphic-byline" id="byline">Toronto Star graphic</p> -->
+                <!-- </div> -->
+
+                <div class="dividerLine"></div>
+
+
+
+                <div class="graphic-top">
+                    <h2 class="graphic-top__graphic-hed">To find the greenest parts of the city, <br>follow the money</h2>
+                    <h3 class="graphic-top__graphic-dek contextBlock">The Humber and Don River valleys really stick out on the map of Toronto’s forests, as does the massive and gorgeous Scarborough ravine system and the vast expanse of Rouge Park. What a closer look might reveal, however, is the degree to which on a street-by-street basis the wealthiest central areas of the city are greener — in the nature sense, not just the dollar sense — than the lower-income areas, particularly in the northwest.</h3>
+                    <h3 class="graphic-top__graphic-dek graphHed">Tree coverage, 2018</h3>
+            
+                    <span class="interactive-graphic-cta interactive-graphic-cta__desktop"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Hover.svg" height="23px">Hover on each area for more information</span><span class="interactive-graphic-cta interactive-graphic-cta__mobile"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Tap.svg" height="23px">Tap on each area for more information</span>
+            
+                    <!-- <div class="graphic-legend">
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-1"></div><p class="graphic-legend-text">Legend text 1</p>
+                        </div>
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-2"></div><p class="graphic-legend-text">Legend text 2</p>
+                        </div>
+                    </div> -->
+                </div>
+                <style>#toronto-tree-coverage{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="toronto-tree-coverage" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/_all-in-one/index-tree-coverage.html" scrolling="no" height="615" title="Tree coverage embedded content"></iframe>
+                <!-- <div class="graphic-bottom"> -->
+                    <!-- <p class="graphic-bottom__notetext" id="notetext">* Any further note to explain one aspect of the data could go here.</p> -->
+                    <!-- <p class="graphic-bottom__graphic-source" id="source">Source: City of Toronto</p> -->
+                    <!-- <p class="graphic-bottom__graphic-byline" id="byline">Toronto Star graphic</p> -->
+                <!-- </div> -->
+
+                <div class="dividerLine"></div>
+
+
+
+                <div class="graphic-top">
+                    <h2 class="graphic-top__graphic-hed">Toronto’s political divide evolves</h2>
+                    <h3 class="graphic-top__graphic-dek contextBlock">The geographic divide between Olivia Chow voters and those of runner-up Ana Bailão tells the story of a new mayor ushered into office by a coalition of downtown and Scarborough residents, with the wealthier areas of midtown and central Etobicoke most interested in Bailão. It’s a different political divide than in the Rob Ford era, and perhaps a picture of who wanted a change of direction versus who supported the status quo.</h3>
+                    <h3 class="graphic-top__graphic-dek graphHed">How Toronto voted in the June 2023 mayoral election. Voting trend between Olivia Chow and Ana Bailão.</h3>
+                    <p class="graphic-bottom__graphic-source" id="source">Source: City of Toronto</p>
+
+                    <span class="interactive-graphic-cta interactive-graphic-cta__desktop"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Hover.svg" height="23px">Hover on each area for more information</span><span class="interactive-graphic-cta interactive-graphic-cta__mobile"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Tap.svg" height="23px">Tap on each area for more information</span>
+            
+                    <!-- <div class="graphic-legend">
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-1"></div><p class="graphic-legend-text">Legend text 1</p>
+                        </div>
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-2"></div><p class="graphic-legend-text">Legend text 2</p>
+                        </div>
+                    </div> -->
+                </div>
+                <style>#toronto-mayoral-votes-leaning{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="toronto-mayoral-votes-leaning" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/_all-in-one/index-mayor-votes-leaning.html" scrolling="no" height="650" title="Mayor votes 2023 embedded content"></iframe>
+                <!-- <div class="graphic-bottom" style="margin-top: 32px;"> -->
+                    <!-- <p class="graphic-bottom__notetext" id="notetext">* Any further note to explain one aspect of the data could go here.</p> -->
+                    <!-- <p class="graphic-bottom__graphic-source" id="source">Source: City of Toronto</p> -->
+                    <!-- <p class="graphic-bottom__graphic-byline" id="byline">Toronto Star graphic</p> -->
+                <!-- </div> -->
+
+                <div class="dividerLine"></div>
+
+
+
+                <div class="graphic-top">
+                    <h2 class="graphic-top__graphic-hed">Who can afford to live farther from the gunshots?</h2>
+                    <h3 class="graphic-top__graphic-dek contextBlock">This map charts every reported firearm discharge over a decade. The downtown core shows the densest clusters of incidents, which you might expect given the city’s business and nightlife are concentrated in those areas. Other trends are harder to discern, except that even a glance shows that the wealthiest areas of the city seem somewhat insulated from a phenomenon troubling much of Toronto.</h3>
+                        
+                    <!-- <h3 class="graphic-top__graphic-dek contextBlock"></h3>As of publication date, Toronto has seen TKKTKTK incidents. At this rate 2023 will become the TKTKTK[best/worse] year for gun violence cinse 2014.<h3> -->
+                    <h3 class="graphic-top__graphic-dek graphHed">Shootings and firearm discharges, 2014-2023</h3>
+                    <p class="graphic-bottom__graphic-source" id="source">Source: City of Toronto</p>
+
+                    <span class="interactive-graphic-cta interactive-graphic-cta__desktop"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Hover.svg" height="23px">Hover on each area for more information</span><span class="interactive-graphic-cta interactive-graphic-cta__mobile"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Tap.svg" height="23px">Tap on each area for more information</span>
+            
+                    <!-- <div class="graphic-legend">
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-1"></div><p class="graphic-legend-text">Legend text 1</p>
+                        </div>
+                        <div class="graphic-legend-container">
+                            <div class="graphic-legend-dot" id="legend-dot-2"></div><p class="graphic-legend-text">Legend text 2</p>
+                        </div>
+                    </div> -->
+                </div>
+                <style>#firearm-discharges{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="firearm-discharges" src="https://misc.thestar.com/interactivegraphic/2023/07-july/12-toronto-birthday-maps/_all-in-one/index-firearm-discharges.html" scrolling="no" height="600" title="Firearm discharges embedded content"></iframe>
+                <!-- <div class="graphic-bottom"> -->
+                    <!-- <p class="graphic-bottom__notetext" id="notetext">* Any further note to explain one aspect of the data could go here.</p> -->
+                    <!-- <p class="graphic-bottom__graphic-source" id="source">Source: City of Toronto</p> -->
+                    <!-- <p class="graphic-bottom__graphic-byline" id="byline">Toronto Star graphic</p> -->
+                <!-- </div> -->
+
+                <div class="dividerLine"></div>
+
+
+                [% subContentStop(); %]
+                [% paywallEnd(); %]
+
+                
+<div class="shareIcons" style="clear:both"><div class="share-container content-above" data-subscription-required-remove=""><ul class="social-share-links hidden-print list-inline icon" data-lpos="asset|share-toolbar"style="width: fit-content;margin: 0 auto;><li class="social-share-link fb"><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.thestar.com/interactives/toronto-is-230-years-old-these-nine-maps-tell-you-who-we-are-today/article_7bf57a36-2bd1-11ee-95c7-9f3d3702ca73.html%3Futm_medium%3Dsocial%26utm_source%3Dfacebook%26utm_campaign%3Duser-share" class="tnt-share-link fb" target="_blank" rel="noopener nofollow" title="Share on Facebook" data-toggle="new-window" data-new-window-width="500" data-new-window-height="300" data-track="{&quot;network&quot;:&quot;Facebook&quot;,&quot;socialAction&quot;:&quot;post&quot;,&quot;url&quot;:&quot;/interactives/toronto-is-230-years-old-these-nine-maps-tell-you-who-we-are-today/article_7bf57a36-2bd1-11ee-95c7-9f3d3702ca73.html&quot;}" data-tncms-track-event="{&quot;app&quot;:&quot;editorial&quot;,&quot;metric&quot;:&quot;social_share&quot;,&quot;uuid&quot;:&quot;7bf57a36-2bd1-11ee-95c7-9f3d3702ca73&quot;}" data-tncms-track-dmp="Social Media Share"><span class="tnt-stack"><svg class="tnt-svg tnt-facebook-f tnt-w-9 tnt-stack-1x" aria-hidden="true" data-prefix="fab" data-icon="facebook-f" role="presentation" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 264 512" data-fa-i2svg=""><path fill="currentColor" d="M76.7 512V283H0v-91h76.7v-71.7C76.7 42.4 124.3 0 193.8 0c33.3 0 61.9 2.5 70.2 3.6V85h-48.2c-37.8 0-45.1 18-45.1 44.3V192H256l-11.7 91h-73.6v229"></path></svg></span><span class="sr-only">Facebook</span></a></li><li class="social-share-link tw"><a href="https://twitter.com/intent/tweet?&amp;text=Think%20you%20know%20Toronto?%20These%209%20maps%20show%20how%20our%20city%20is%20growing,%20moving%20and%20how%20expensive%20it%20is%20to%20live%20here&amp;via=torontostar&amp;url=https%3A%2F%2Fwww.thestar.com/interactives/toronto-is-230-years-old-these-nine-maps-tell-you-who-we-are-today/article_7bf57a36-2bd1-11ee-95c7-9f3d3702ca73.html%3Futm_medium%3Dsocial%26utm_source%3Dtwitter%26utm_campaign%3Duser-share" class="tnt-share-link tw" target="_blank" rel="noopener nofollow" title="Tweet" data-toggle="new-window" data-new-window-width="500" data-new-window-height="300" data-track="{&quot;network&quot;:&quot;Twitter&quot;,&quot;socialAction&quot;:&quot;tweet&quot;,&quot;url&quot;:&quot;/interactives/toronto-is-230-years-old-these-nine-maps-tell-you-who-we-are-today/article_7bf57a36-2bd1-11ee-95c7-9f3d3702ca73.html&quot;}" data-tncms-track-event="{&quot;app&quot;:&quot;editorial&quot;,&quot;metric&quot;:&quot;social_share&quot;,&quot;uuid&quot;:&quot;7bf57a36-2bd1-11ee-95c7-9f3d3702ca73&quot;}" data-tncms-track-dmp="Social Media Share"><span class="tnt-stack"><svg class="tnt-svg tnt-twitter tnt-w-16 tnt-stack-1x" aria-hidden="true" data-prefix="fab" data-icon="twitter" role="presentation" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg></span><span class="sr-only">Twitter</span></a></li><li class="social-share-link wa"><a href="https://www.thestar.com/interactives/toronto-is-230-years-old-these-nine-maps-tell-you-who-we-are-today/article_7bf57a36-2bd1-11ee-95c7-9f3d3702ca73.html" class="tnt-share-link wa" target="_blank" rel="noopener nofollow" title="WhatsApp" data-toggle="new-window" data-new-window-width="500" data-new-window-height="300" data-track="{&quot;network&quot;:&quot;WhatsApp&quot;,&quot;socialAction&quot;:&quot;share&quot;,&quot;url&quot;:&quot;/interactives/toronto-is-230-years-old-these-nine-maps-tell-you-who-we-are-today/article_7bf57a36-2bd1-11ee-95c7-9f3d3702ca73.html&quot;}" data-tncms-track-event="{&quot;app&quot;:&quot;editorial&quot;,&quot;metric&quot;:&quot;social_share&quot;,&quot;uuid&quot;:&quot;7bf57a36-2bd1-11ee-95c7-9f3d3702ca73&quot;}" data-tncms-track-dmp="Social Media Share"><span class="tnt-stack"><svg class="tnt-svg tnt-whatsapp tnt-w-14 tnt-stack-1x" aria-hidden="true" data-prefix="fab" data-icon="whatsapp" role="presentation" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg></span><span class="sr-only">WhatsApp</span></a></li><li class="social-share-link lin"><a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.thestar.com/interactives/toronto-is-230-years-old-these-nine-maps-tell-you-who-we-are-today/article_7bf57a36-2bd1-11ee-95c7-9f3d3702ca73.html" class="tnt-share-link lin" target="_blank" rel="noopener nofollow" title="Share on LinkedIn" data-toggle="new-window" data-new-window-width="500" data-new-window-height="300" data-track="{&quot;network&quot;:&quot;LinkedIn&quot;,&quot;socialAction&quot;:&quot;post&quot;,&quot;url&quot;:&quot;/interactives/toronto-is-230-years-old-these-nine-maps-tell-you-who-we-are-today/article_7bf57a36-2bd1-11ee-95c7-9f3d3702ca73.html&quot;}" data-tncms-track-event="{&quot;app&quot;:&quot;editorial&quot;,&quot;metric&quot;:&quot;social_share&quot;,&quot;uuid&quot;:&quot;7bf57a36-2bd1-11ee-95c7-9f3d3702ca73&quot;}" data-tncms-track-dmp="Social Media Share"><span class="tnt-stack"><svg class="tnt-svg tnt-linkedin-in tnt-w-14 tnt-stack-1x" aria-hidden="true" data-prefix="fab" data-icon="linkedin-in" role="presentation" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M100.3 480H7.4V180.9h92.9V480zM53.8 140.1C24.1 140.1 0 115.5 0 85.8 0 56.1 24.1 32 53.8 32c29.7 0 53.8 24.1 53.8 53.8 0 29.7-24.1 54.3-53.8 54.3zM448 480h-92.7V334.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V480h-92.8V180.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V480z"></path></svg></span><span class="sr-only">LinkedIn</span></a></li><li class="social-share-link sms" style="display:none"><a href="sms:?body=Check%20out%20this%20link:%20www.thestar.com/tncms/asset/editorial/7bf57a36-2bd1-11ee-95c7-9f3d3702ca73" class="tnt-share-link sms" title="SMS" data-track="{&quot;category&quot;:&quot;tnt-sms&quot;,&quot;action&quot;:&quot;share&quot;,&quot;label&quot;:&quot;editorial-article&quot;,&quot;value&quot;:&quot;&quot;}" data-tncms-track-event="{&quot;app&quot;:&quot;editorial&quot;,&quot;metric&quot;:&quot;sms&quot;,&quot;uuid&quot;:&quot;7bf57a36-2bd1-11ee-95c7-9f3d3702ca73&quot;}" data-tncms-track-dmp="SMS Share" rel="nofollow"><span class="tnt-stack"><svg class="tnt-svg tnt-comment-alt-dots tnt-w-16 tnt-stack-1x" aria-hidden="true" data-prefix="fas" data-icon="comment-alt-dots" role="presentation" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M448 0H64C28.7 0 0 28.7 0 64v288c0 35.3 28.7 64 64 64h96v84c0 9.8 11.2 15.5 19 9.7L304 416h144c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64zM161.5 207.7c0 17.7-14.4 32-32 32-17.7 0-32-14.3-32-32s14.3-32 32-32c17.6 0 32 14.3 32 32zm127.3 0c0 17.7-14.3 32-32 32-17.6 0-32-14.3-32-32s14.4-32 32-32c17.7 0 32 14.3 32 32zm128 0c0 17.7-14.3 32-32 32s-32-14.3-32-32 14.4-32 32-32 32 14.3 32 32z"></path></svg></span><span class="sr-only">SMS</span></a></li><li class="social-share-link em"><a href="mailto:?subject=%5BThink%20you%20know%20Toronto?%20These%209%20maps%20show%20how%20our%20city%20is%20growing,%20moving%20and%20how%20expensive%20it%20is%20to%20live%20here&amp;body=https%3A%2F%2Fwww.thestar.com/interactives/toronto-is-230-years-old-these-nine-maps-tell-you-who-we-are-today/article_7bf57a36-2bd1-11ee-95c7-9f3d3702ca73.html%3Futm_medium%3Dsocial%26utm_source%3Demail%26utm_campaign%3Duser-share" class="tnt-share-link em email-share-link" title="Email" data-track="{&quot;category&quot;:&quot;tnt-email&quot;,&quot;action&quot;:&quot;share&quot;,&quot;label&quot;:&quot;editorial-article&quot;,&quot;value&quot;:&quot;&quot;}" data-tncms-track-event="{&quot;app&quot;:&quot;editorial&quot;,&quot;metric&quot;:&quot;email&quot;,&quot;uuid&quot;:&quot;7bf57a36-2bd1-11ee-95c7-9f3d3702ca73&quot;}" data-tncms-track-dmp="Email Share" rel="nofollow"><span class="tnt-stack"><svg class="tnt-svg tnt-envelope tnt-w-16 tnt-stack-1x" aria-hidden="true" data-prefix="fas" data-icon="envelope" role="presentation" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path></svg></span><span class="sr-only">Email</span></a></li><li class="social-share-link pr"><a href="javascript:window.print()" class="pr" title="Print" data-track="{&quot;network&quot;:&quot;Print&quot;,&quot;socialAction&quot;:&quot;print&quot;,&quot;url&quot;:&quot;/interactives/toronto-is-230-years-old-these-nine-maps-tell-you-who-we-are-today/article_7bf57a36-2bd1-11ee-95c7-9f3d3702ca73.html&quot;}" data-tncms-track-event="{&quot;app&quot;:&quot;editorial&quot;,&quot;metric&quot;:&quot;social_share&quot;,&quot;uuid&quot;:&quot;7bf57a36-2bd1-11ee-95c7-9f3d3702ca73&quot;}" data-tncms-track-dmp="Social Media Share" rel="nofollow"><span class="tnt-stack"><svg class="tnt-svg tnt-print tnt-w-16 tnt-stack-1x" aria-hidden="true" data-prefix="fas" data-icon="print" role="presentation" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M464 192h-16V81.941a24 24 0 0 0-7.029-16.97L383.029 7.029A24 24 0 0 0 366.059 0H88C74.745 0 64 10.745 64 24v168H48c-26.51 0-48 21.49-48 48v132c0 6.627 5.373 12 12 12h52v104c0 13.255 10.745 24 24 24h336c13.255 0 24-10.745 24-24V384h52c6.627 0 12-5.373 12-12V240c0-26.51-21.49-48-48-48zm-80 256H128v-96h256v96zM128 224V64h192v40c0 13.2 10.8 24 24 24h40v96H128zm304 72c-13.254 0-24-10.746-24-24s10.746-24 24-24 24 10.746 24 24-10.746 24-24 24z"></path></svg></span><span class="sr-only">Print</span></a></li></ul><form method="post" data-uuid="7bf57a36-2bd1-11ee-95c7-9f3d3702ca73" class="save-list-7bf57a36-2bd1-11ee-95c7-9f3d3702ca73-form save-asset-to-list" action="/users/admin/list/"><input type="hidden" name="action" value="addasset"> <input type="hidden" name="format" value="json"> <input type="hidden" name="listasset" value="7bf57a36-2bd1-11ee-95c7-9f3d3702ca73"> <input type="hidden" name="listapp" value="editorial"> <input type="hidden" name="autocreate" value="true"> <input type="hidden" name="listname" value="articles"> <input class="hide" type="submit" name="submit" value="Save"></form></div></div>
+
+<script type="text/javascript">window.addEventListener('message', receiveMessage, false);function receiveMessage(event) {var origin = event.origin || event.originalEvent.origin;if (origin !== 'https://misc.thestar.com') {return;}var data = event.data.resize;if (data) {const {height, iframe} = data;if (height && iframe) {const iframeElement = document.getElementById(iframe);if (iframeElement) {iframeElement.height = height;}var elem = height;}}}</script>
+
+<script>
+
+
+    function resize(){
+        var message = {'resize': 
+                  {
+                    'iframe':'graphic-iframe-1',
+                    'height': document.getElementsByClassName('graphic-1')[0].offsetHeight + 20
+                  }
+                };
+       
+        parent.postMessage(message, "*");
+    };
+
+    window.addEventListener('load', function() {
+        resize();
+    });
+
+    window.addEventListener("resize", function(){
+        resize();
+    });
+
+    setTimeout(function() {
+                        resize();
+                    }, 800);
+
+  
+	document.addEventListener("touchstart", function(){}, true);
+
+</script>
+
+    [% end; -%]

@@ -1,6 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+[%-
+macro seaTorontoMaps(); 
+seaPath = "torontomaps";
+compPath = util_comFile('torstar_special_articles','1.js','path':'') | replace("scripts/1.js","");
+compImgPath = compPath+"images/"+seaPath;
+compJSPath = compPath+"scripts/"+seaPath;
+compCSSPath+"styles/"+seaPath;
+
+cms.page.add_script(util_comFile('torstar_special_articles','topIllo.js','fPath':'scripts/'+seaPath), 'defer':true); 
+%]
+
+
     <meta charset="utf-8">
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -13,177 +22,93 @@
     <script src="https://misc.thestar.com/interactivegraphic/libraries/d3v4.min.js"></script>
     <script src="https://misc.thestar.com/interactivegraphic/libraries/topojson.v2.min.js"></script>
 
-<style>
+
+    <style>
 
 
 
-.graphic-wrapper {
-    padding: 0;
-}
-
-.graphic-wrapper .graphic-top {
-  max-width: 690px;
-  margin: 30px auto 0;
-}
-
-h2.graphic-top__graphic-hed {
-    padding-bottom: 12px;
-}
-
-.sa_topIllustration {
-    position: relative;
-    width: 210px;
-    height: 108px;
-    margin: 0 auto;
-}
-
-.sa_topIllustration img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-}
-
-.graphic-wrapper .graphic-top,
-  .graphic-wrapper .graphic-bottom {
-    max-width: 600px;
-    margin: 0 auto 0;
-    padding-bottom: 0;
-  }
-  .graphic-wrapper .graphic-bottom {
-    margin-top: 20px;
-  }
-  
-  .graphic-wrapper h2 {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
-      font-size: 24px;
-      font-weight: 600;
-      /* text-transform: uppercase; */
-      text-align: center;
-  }
-  
-  .graphic-wrapper .graphic-top p {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
-      font-size: 22px;
-      font-weight: 600;
-      text-transform: uppercase;
-      text-align: center;
-    }
-
-  .graphic-wrapper .graphic-top .sa_topIllustration {
-    margin: 80px auto 0;
-  }
-
-@media (max-width: 425px) { 
-      .graphic-wrapper .graphic-top .sa_topIllustration {
-      margin: 40px auto 0;
-      }
-}
-
-  .graphic-wrapper .graphic-top p.section {
-    color: #0077BB;
-    font-size: 16px;
-    margin: 20px auto;
-  }
+        .graphic-wrapper {
+            padding: 0;
+        }
+        
+        .graphic-wrapper .graphic-top {
+          max-width: 690px;
+          margin: 30px auto 0;
+        }
+        
+        h2.graphic-top__graphic-hed {
+            padding-bottom: 12px;
+        }
+        
+        .sa_topIllustration {
+            position: relative;
+            width: 210px;
+            height: 108px;
+            margin: 0 auto;
+        }
+        
+        .sa_topIllustration img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        .graphic-wrapper .graphic-top,
+          .graphic-wrapper .graphic-bottom {
+            max-width: 600px;
+            margin: 0 auto 0;
+            padding-bottom: 0;
+          }
+          .graphic-wrapper .graphic-bottom {
+            margin-top: 20px;
+          }
           
-.graphic-wrapper .graphic-top p.sa_author {
-    margin: 80px 0 0;
-    color: #0077BB;
-    text-transform: none;
-    line-height: 17px;
-}
+          .graphic-wrapper h2,
+          .graphic-top h2.graphic-top__graphic-hed.smallHeader:first-of-type {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+              font-size: 24px;
+              font-weight: 600;
+              /* text-transform: uppercase; */
+              text-align: center;
+          }
+          
+          .graphic-wrapper .graphic-top p {
+              font-family: 'Inter', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+              font-size: 22px;
+              font-weight: 600;
+              text-transform: uppercase;
+              text-align: center;
+            }
+        
+          .graphic-wrapper .graphic-top .sa_topIllustration {
+            margin: 80px auto 0;
+          }
+
+          @media (max-width: 425px) { 
+                .graphic-wrapper .graphic-top .sa_topIllustration {
+                margin: 40px auto 0;
+                }
+          }
+        
+          .graphic-wrapper .graphic-top p.section {
+            color: #0077BB;
+            font-size: 16px;
+            margin: 20px auto;
+          }
+          
+          .graphic-wrapper .graphic-top p.sa_author {
+            margin: 80px 0 0;
+            color: #0077BB;
+            text-transform: none;
+            line-height: 17px;
+          }
 
 .graphic-wrapper .graphic-top p.sa_author:nth-child(6) {
     margin: 80px 0 20px;
 }
-
-  .graphic-wrapper .graphic-top a {
-    color: #0077BB;
-    text-decoration: none;
-    font-size: 16px;
-  }
-  
-  .graphic-wrapper .graphic-top a:hover, 
-  .graphic-wrapper .graphic-top a:focus {
-    color: #707070;
-  }
-  .graphic-wrapper .graphic-top a:visited {
-    color: #0077BB;
-  }
-
-
-  .graphic-wrapper .graphic-top p.sa_pubDate {
-    margin: 6px 0 0;
-    color: #666;
-    font-size: 16px;
-    text-transform: none;
-    font-weight: 400;
-  }
-  
-  .graphic-wrapper .graphic-top__graphic-dek {
-      text-align: justify;
-      padding-bottom: 4px;
-  }
-
-  .graphic-top__graphic-dek.graphHed {
-    text-transform: uppercase;
-    font-weight: 600;
-      text-align: center;
-  }
-
-  .graphic-top__graphic-dek.contextBlock {
-    margin-bottom: 32px;
-  }
-
-  .graphic-wrapper .graphic-top:first-of-type {
-    margin-bottom: 80px;
-  }
-
-  .graphic-wrapper .graphic-top:first-of-type h2 {
-  font-size: 48px;
-  line-height: 1.2em;
-  padding-bottom: 4px;
-  font-family: "TorstarDeckCondensed", Georgia, "Times New Roman", Times, serif;
-  color: #000;
-  text-rendering: optimizeLegibility;
-  font-weight: normal;
-  font-style: normal;
-  text-transform: none;
-  -moz-osx-font-smoothing: grayscale;
-}
-  @media (min-width: 526px) {
-    .graphic-wrapper .graphic-top:first-of-type {
-      font-size: 28px; } }
-  @media (min-width: 592px) {
-    .graphic-wrapper .graphic-top:first-of-type {
-      font-size: 30px; } }
-
-
-.graphic-top p.graphic-bottom__graphic-source {
-    /* display: block; */
-  margin: 0 auto;
-  width: 100%;
-  padding-bottom: 4px;
-  font-size: 11px;
-  line-height: 1.35em;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
-  color: #B8B8B8;
-  text-align: center;
-  text-rendering: optimizeLegibility;
-  text-transform: uppercase; 
-}
-
-  @media (min-width: 526px) {
-    .graphic-top p.graphic-bottom__graphic-source {
-      max-width: 100%;
-      width: 100%;
-      vertical-align: top;
-      /* float: left; */
-      font-size: 12px; } 
-    
-    }
 
 @media (min-width: 356px) {
 
@@ -193,90 +118,186 @@ h2.graphic-top__graphic-hed {
   }
   
   }
+        
+          .graphic-wrapper .graphic-top a {
+            color: #0077BB;
+            text-decoration: none;
+            font-size: 16px;
+          }
+          
+          .graphic-wrapper .graphic-top a:hover, 
+          .graphic-wrapper .graphic-top a:focus {
+            color: #707070;
+          }
+          .graphic-wrapper .graphic-top a:visited {
+            color: #0077BB;
+          }
+        
+        
+          .graphic-wrapper .graphic-top p.sa_pubDate {
+            margin: 6px 0 0;
+            color: #666;
+            font-size: 16px;
+            text-transform: none;
+            font-weight: 400;
+          }
+          
+          .graphic-wrapper .graphic-top__graphic-dek {
+              text-align: justify;
+              padding-bottom: 4px;
+          }
+        
+          .graphic-top__graphic-dek.graphHed {
+            text-transform: uppercase;
+            font-weight: 600;
+              text-align: center;
+          }
+        
+          .graphic-top__graphic-dek.contextBlock {
+            margin-bottom: 32px;
+          }
+        
+          .graphic-wrapper .graphic-top:first-of-type {
+            margin-bottom: 80px;
+          }
+        
+          .graphic-wrapper .graphic-top:first-of-type h2 {
+          font-size: 30px;
+          line-height: 1.2em;
+          padding-bottom: 4px;
+          font-family: "TorstarDeckCondensed", Georgia, "Times New Roman", Times, serif;
+          color: #000;
+          text-rendering: optimizeLegibility;
+          font-weight: normal;
+          font-style: normal;
+          text-transform: none;
+          -moz-osx-font-smoothing: grayscale;
+        }
+          @media (min-width: 526px) {
+            .graphic-wrapper .graphic-top:first-of-type h2 {
+              font-size: 42px; } }
+          @media (min-width: 592px) {
+            .graphic-wrapper .graphic-top:first-of-type h2 {
+              font-size: 48px; } }
+        
+        
+        .graphic-top p.graphic-bottom__graphic-source {
+            /* display: block; */
+          margin: 0 auto;
+          width: 100%;
+          padding-bottom: 4px;
+          font-size: 11px;
+          line-height: 1.35em;
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+          color: #B8B8B8;
+          text-align: center;
+          text-rendering: optimizeLegibility;
+          text-transform: uppercase; 
+        }
+        
+          @media (min-width: 526px) {
+            .graphic-top p.graphic-bottom__graphic-source {
+              max-width: 100%;
+              width: 100%;
+              vertical-align: top;
+              /* float: left; */
+              font-size: 12px; } 
+            
+            }
+        
+        .interactive-graphic-cta {
+            white-space: normal;
+            text-align: center;
+            width: 100%;
+        }
 
-.interactive-graphic-cta {
-    white-space: normal;
-    text-align: center;
-    width: 100%;
-}
+        .interactive-graphic-cta-image {
+            transform: translateY(-6px);
+        }
+        
+        .dividerLine {
+            margin: 0 auto;
+            width:100%;
+            height: 100px;
+            /* border-bottom: 1px solid #ccc; */
+        }
+        
+        .dividerLine.smallLine {
+            margin:60px auto;
+            width:50px;
+            border-bottom: 1px solid #ccc;
+            height: 0;
+        }
+        
+        .breaker-container{
+            display: flex;
+            align-content: space-between;
+            /* flex-wrap: wrap; */
+            margin:60px auto;
+            width:300px;
+        }
+        
+        .imgContainer {
+            width: 150px
+        }
+        
+        .noBreak {
+            white-space: nowrap;
+        }
+        
+        @media (max-width: 526px) {
+        
+            .graphic-wrapper {
+                padding: 0 4px;
+            }
+        
+            .graphic-top__graphic-dek,
+            .graphic-bottom__graphic-source {
+            padding-left: 8px;
+            padding-right: 8px;
+            }
+        
+            .map
+        
+              .dividerLine {
+                  height: 60px;
+              }
+          
+          }
+        
+        @media (max-width: 412px) {
+        
+              .dividerLine {
+                  height: 40px;
+              }
+          
+          }
+        
+        
+        </style>
 
-.dividerLine {
-    margin: 0 auto;
-    width:100%;
-    height: 100px;
-    /* border-bottom: 1px solid #ccc; */
-}
-
-.dividerLine.smallLine {
-    margin:60px auto;
-    width:50px;
-    border-bottom: 1px solid #ccc;
-    height: 0;
-}
-
-.breaker-container{
-    display: flex;
-    align-content: space-between;
-    /* flex-wrap: wrap; */
-    margin:60px auto;
-    width:300px;
-}
-
-.imgContainer {
-    width: 150px
-}
-
-.noBreak {
-    white-space: nowrap;
-}
-
-@media (max-width: 526px) {
-
-    .graphic-wrapper {
-        padding: 0 4px;
-    }
-
-    .graphic-top__graphic-dek,
-    .graphic-bottom__graphic-source {
-    padding-left: 8px;
-    padding-right: 8px;
-    }
-
-    .map
-
-      .dividerLine {
-          height: 60px;
-      }
-  
-  }
-
-@media (max-width: 412px) {
-
-      .dividerLine {
-          height: 40px;
-      }
-  
-  }
-
-
-</style>
-</head>
-<body>
-  <div class="graphic-wrapper graphic-1">
-    <div class="graphic-top">
+<div class="graphic-wrapper graphic-1">
+    <div class="graphic-top" style="margin-bottom: 0;">
         <div id="topIllo" class="sa_topIllustration">
             <!-- <img id="loopThisTopImg" src="" alt="a small map of toronto"> -->
-            <img class="fade-image" src="./img/topillo0.png" alt="a small map of toronto" style="opacity: 1;">
-            <img class="fade-image" src="./img/topillo1.png" alt="a small map of toronto">
-            <img class="fade-image" src="./img/topillo2.png" alt="a small map of toronto">
-            <img class="fade-image" src="./img/topillo3.png" alt="a small map of toronto">
+            <img class="fade-image" src="[% compImgPath %]/topillo0.png" alt="a small map of toronto" style="opacity: 1;">
+            <img class="fade-image" src="[% compImgPath %]/topillo1.png" alt="a small map of toronto">
+            <img class="fade-image" src="[% compImgPath %]/topillo2.png" alt="a small map of toronto">
+            <img class="fade-image" src="[% compImgPath %]/topillo3.png" alt="a small map of toronto">
         </div>
         <p class="section">Mapping Toronto</p>
         <h2 class="graphic-top__graphic-hed">Toronto is 230 years old, these nine maps tell you who we are today</h2><br>
         <h3 class="graphic-top__graphic-dek">Sunday marks 230 years since what is now Toronto was settled by the British on lands that were part of a disputed purchase from the Mississaugas of the New Credit First Nation (a purchase later clarified in 1805’s Treaty 13, which itself was subject to dispute until a claim settlement in 2010). On August 27th 1793, Lt.-Gov. John Graves Simcoe founded what was initially called the Town of York as Upper Canada’s capital. We’ve changed a lot from the forested lakeside wilderness of that time, growing into a city of 3 million. To mark the occasion, the Star created nine maps that provide a snapshot of how those millions live together today — from income to crime to demographics and growth, they illuminate the city we are, and the city we’re becoming.</h3>
         <p class="sa_author"><a href="https://www.thestar.com/users/profile/andres-plana/" target="_blank">Graphics by Andres Plana, <span class="noBreak">Digital Designer</span></a></p>
         <p class="sa_author" style="margin-top: 0;"><a href="https://www.thestar.com/users/profile/edward-keenan/" target="_blank">Analysis by Edward Kennan, <span class="noBreak">City Columnist</span></a></p>
-        <p class="sa_pubDate">August 25, 2023</p>
+</div>
+
+
+[% paywallStart();%] 
+
+<div class="graphic-top" style="padding-top: 0;">
+        <p class="sa_pubDate subscriber-preview">August 25, 2023</p>
+
 
         <!-- <div class="graphic-legend">
             <div class="graphic-legend-container">
@@ -287,6 +308,9 @@ h2.graphic-top__graphic-hed {
             </div>
         </div> -->
     </div>
+
+    [% subPaywallDisplay(); %]
+    [% subContentStart(); %]
 
     <!-- <div class="breaker-container">
         <div class="dividerLine smallLine"></div>
@@ -305,7 +329,7 @@ h2.graphic-top__graphic-hed {
     </div>
   </div> -->
                 <div class="graphic-top">
-                    <h2 class="graphic-top__graphic-hed">Population density in an increasingly crowded city</h2>
+                    <h2 class="graphic-top__graphic-hed smallHeader">Population density in an increasingly crowded city</h2>
                     <h3 class="graphic-top__graphic-dek contextBlock">We aren’t evenly spread out. It’s no surprise the downtown core is up to 15 times more dense than the single-family subdivisions of Etobicoke and Scarborough. But check out the even more densely populated downtown North York (with as many as 45,222 people per sq. km.), just blocks away from subdivisions with fewer than 2,200 per sq. km., illustrating the extreme contrasts that have emerged in neighbourhood development. </h3>
                     <h3 class="graphic-top__graphic-dek graphHed">Population density, 2021</h3>
                     <p class="graphic-bottom__graphic-source" id="source">Source: Statistics Canada</p>
@@ -359,8 +383,8 @@ h2.graphic-top__graphic-hed {
 
 
 
-                <div class="graphic-top">
-                    <h2 class="graphic-top__graphic-hed">Growing in places, shrinking in others</h2>
+                <div class="graphic-top" style="margin-bottom: 0;">
+                    <h2 class="graphic-top__graphic-hed">Growing in places, <span class="noBreak">shrinking in others</span></h2>
                     <h3 class="graphic-top__graphic-dek contextBlock">Toronto’s growth is also unevenly developing. Predictably, the neighbourhoods (downtown, midtown, uptown) where highrise condos have become defining landmarks have been growing fastest. But what’s interesting and maybe troubling  is that in a growing city with a housing crisis, the population along much of the Bloor subway line has actually been shrinking. </h3>
                     <h3 class="graphic-top__graphic-dek graphHed">Population change between 2016 and 2021</h3>
                     <p class="graphic-bottom__graphic-source" id="source">Source: Statistics Canada</p>
@@ -389,9 +413,9 @@ h2.graphic-top__graphic-hed {
 
 
                 <div class="graphic-top">
-                    <h2 class="graphic-top__graphic-hed">A city that’s mostly getting older</h2>
+                    <h2 class="graphic-top__graphic-hed">A city that’s mostly <span class="noBreak">getting older</span></h2>
                     <h3 class="graphic-top__graphic-dek contextBlock">Toronto’s population growth isn’t coming from the birth of children, as the population of many areas — particularly the most established and wealthiest — has been getting older. Toronto’s “Benjamin Button” neighbourhood, where the average population has dropped more than 37 years since 2016, is near Victoria Park and the 401— leading just a handful of pockets spread across the city getting more youthful.</h3>
-                    <h3 class="graphic-top__graphic-dek graphHed">Change in the average age between 2016 and 2021</h3>
+                    <h3 class="graphic-top__graphic-dek graphHed">Change in the average age between <span class="noBreak">2016 and 2021</span></h3>
                     <p class="graphic-bottom__graphic-source" id="source">Source: Statistics Canada</p>
 
                     <span class="interactive-graphic-cta interactive-graphic-cta__desktop"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Hover.svg" height="23px">Hover on each area for more information</span><span class="interactive-graphic-cta interactive-graphic-cta__mobile"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Tap.svg" height="23px">Tap on each area for more information</span>
@@ -417,7 +441,7 @@ h2.graphic-top__graphic-hed {
 
 
                 <div class="graphic-top">
-                    <h2 class="graphic-top__graphic-hed">The income-divide doughnut </h2>
+                    <h2 class="graphic-top__graphic-hed">The income-divide doughnut</h2>
                     <!-- <h3 class="graphic-top__graphic-dek ">In 2021, the median total household income in Toronto was $84,000, an increase of about $18,000 since 2016. This is the lowest of all regions in the Greater Toronto<span class="noBreak"> and Hamilton Area.</span></h3> -->
                     <h3 class="graphic-top__graphic-dek contextBlock">This map shows a red-hot midtown core on either side of Yonge Street, where the most affluent residents are clustered in and between Rosedale and the Bridle Path as if they’re filling a hole in a doughnut. That the city north of the 401 is home to people of more modest means is well-known, but the divide between affluent central Etobicoke and lower-income central Scarborough is stark.<h3>
                     <h3 class="graphic-top__graphic-dek graphHed">Median household income, 2020</h3>
@@ -446,7 +470,7 @@ h2.graphic-top__graphic-hed {
 
 
                 <div class="graphic-top">
-                    <h2 class="graphic-top__graphic-hed">A city of newcomers, particularly in the north</h2>
+                    <h2 class="graphic-top__graphic-hed">A city of newcomers, <span class="noBreak">particularly in the north</span></h2>
                     <h3 class="graphic-top__graphic-dek contextBlock">Toronto is a city of immigrants, though comparing where the highest concentrations of first-generation Canadians live in this map with the income map — north of the 401, or central Scarborough — paints a picture of newcomers still finding their feet economically. Part of north Agincourt is almost 95 per cent first-generation Canadians; at the other extreme, more than 85 per cent of one pocket of the Kingsway were born in Canada.</h3>
                     <h3 class="graphic-top__graphic-dek graphHed">Percentage of first-generation Canadians in private dwellings, 2021</h3>
                     <p class="graphic-bottom__graphic-source" id="source">Source: Statistics Canada</p>
@@ -531,7 +555,7 @@ h2.graphic-top__graphic-hed {
                 <div class="graphic-top">
                     <h2 class="graphic-top__graphic-hed">Toronto’s political divide evolves</h2>
                     <h3 class="graphic-top__graphic-dek contextBlock">The geographic divide between Olivia Chow voters and those of runner-up Ana Bailão tells the story of a new mayor ushered into office by a coalition of downtown and Scarborough residents, with the wealthier areas of midtown and central Etobicoke most interested in Bailão. It’s a different political divide than in the Rob Ford era, and perhaps a picture of who wanted a change of direction versus who supported the status quo.</h3>
-                    <h3 class="graphic-top__graphic-dek graphHed">How Toronto voted in the June 2023 mayoral election. <br>Voting trend between Olivia Chow and Ana Bailão.</h3>
+                    <h3 class="graphic-top__graphic-dek graphHed">How Toronto voted in the June 2023 mayoral election. Voting trend between Olivia Chow and Ana Bailão.</h3>
                     <p class="graphic-bottom__graphic-source" id="source">Source: City of Toronto</p>
 
                     <span class="interactive-graphic-cta interactive-graphic-cta__desktop"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Hover.svg" height="23px">Hover on each area for more information</span><span class="interactive-graphic-cta interactive-graphic-cta__mobile"><img class="interactive-graphic-cta-image" src="https://misc.thestar.com/interactivegraphic/libraries/interactive-graphic-cta/SVG/Tap.svg" height="23px">Tap on each area for more information</span>
@@ -585,6 +609,10 @@ h2.graphic-top__graphic-hed {
                 <div class="dividerLine"></div>
 
 
+                [% subContentStop(); %]
+                [% paywallEnd(); %]
+
+
 
                 
                 <!-- <div class="graphic-top"> -->
@@ -611,7 +639,7 @@ h2.graphic-top__graphic-hed {
                     <!-- <p class="graphic-bottom__graphic-byline" id="byline">Toronto Star graphic</p> -->
                 <!-- </div> -->
 
-<script src="./js/topIllo.js"></script>
+<!-- <script src="./js/topIllo.js"></script> -->
 
 <script type="text/javascript">window.addEventListener('message', receiveMessage, false);function receiveMessage(event) {var origin = event.origin || event.originalEvent.origin;if (origin !== 'https://misc.thestar.com') {return;}var data = event.data.resize;if (data) {const {height, iframe} = data;if (height && iframe) {const iframeElement = document.getElementById(iframe);if (iframeElement) {iframeElement.height = height;}var elem = height;}}}</script>
 
@@ -646,7 +674,4 @@ h2.graphic-top__graphic-hed {
 
 </script>
 
-<!-- <style>#graphic-iframe-1{padding:0;width:100%;border:0;overflow:hidden;}</style><iframe id="graphic-iframe-1" src="SOURCETKTKTKT" scrolling="no" height="650" title="embedded content"></iframe> -->
-
-</body>
-</html>
+    [% end; -%]

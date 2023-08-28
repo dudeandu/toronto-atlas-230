@@ -52,6 +52,27 @@
   display: inline-block;
 }
 
+#map-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.background-map {
+  width:  100%;
+  display: block;
+  margin-top: 1px;
+  position: absolute;
+  top: 0;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.background-map.light-transparency{
+  opacity: 0.4;
+}
+
 
 .mapheading {
   margin: 0;
@@ -65,7 +86,7 @@
 
 .ward, .ward25 {
 	stroke: #333;
-	stroke-width: 0.5px;
+	stroke-width: 0.3px; 
 	/*fill-opacity: 0.8;*/
 }
 
@@ -96,6 +117,10 @@
   	pointer-events: none;
 }
 
+.area-label.roadLabel {
+	font-size: 9px;
+}
+
 .area-label-background {
   	stroke: #333;
     stroke-width: 3px;
@@ -103,6 +128,10 @@
     stroke-linejoin: round;
     stroke-linecap: round;
 }
+
+/* .dvplabel {
+  transform: rotate(45deg);
+} */
 
 /*TOOLTIP*/
 
@@ -264,6 +293,37 @@
   line-height: 1em;
   margin: 0;
 }
+
+@media (max-width: 480px) {
+
+  .graphic-legend {
+    width: 256px;
+  }
+
+  .legendheading {
+    max-width: 230px;
+  }
+
+  .legendbox-container-1 {
+    width: 256px;
+  }
+
+  .legendbox {
+    font-size: 11px;
+    width: 27px;
+  }
+
+  .legendnumber {
+    font-size: 11px;
+    width: 27px;
+  }
+
+  #legendbox1,
+  #legendnumber1 {
+    margin-left: 18px;
+  }
+
+}
 /*END OF LEGEND*/
 
 
@@ -327,6 +387,11 @@
          <div class="map-container">
 
                 <div class="map" id="map-density"></div>
+           
+                <img class="background-map light-transparency" src="./img/road-background_trimed.png">
+                <img class="background-map" src="./img/road-background-highways.png">
+                     
+                     <div class="map" id="map-text"></div>
 
                 <div id="tooltip" class="hidden">
                     <div id="value"></div>

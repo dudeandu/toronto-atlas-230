@@ -52,6 +52,27 @@
   display: inline-block;
 }
 
+#map-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.background-map {
+  width:  100%;
+  display: block;
+  margin-top: 1px;
+  position: absolute;
+  top: 0;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.background-map.light-transparency{
+  opacity: 0.4;
+}
+
 
 .mapheading {
   margin: 0;
@@ -95,6 +116,10 @@
 	font-family: Helvetica, Arial, sans-serif;
 	text-anchor: middle;
   pointer-events: none;
+}
+
+.area-label.roadLabel {
+	font-size: 9px;
 }
 
 .area-label.leftAligned {
@@ -286,6 +311,36 @@
       margin-left: 22px;
     }
 
+@media (max-width: 480px) {
+
+  .graphic-legend {
+    width: 256px;
+  }
+
+  .legendheading {
+    max-width: 230px;
+  }
+
+  .legendbox-container-1 {
+    width: 256px;
+  }
+
+  .legendbox {
+    font-size: 11px;
+    width: 27px;
+  }
+
+  .legendnumber {
+    font-size: 11px;
+    width: 27px;
+  }
+
+  #legendnumber2 {
+    margin-left: 19px;
+  }
+
+}
+
 
 
 /*END OF LEGEND*/
@@ -357,6 +412,11 @@
          <div class="map-container">
 
                 <div class="map" id="map-median-income"></div>
+           
+                <img class="background-map light-transparency" src="./img/road-background_trimed.png">
+                <img class="background-map" src="./img/road-background-highways.png">
+                     
+                     <div class="map" id="map-text"></div>
 
                 <div id="tooltip" class="hidden">
                     <div id="value"></div>
@@ -383,11 +443,11 @@
                     <div class="legendnumber-container-1 clearfix">
                         <p class="legendnumber" id="legendnumber1">N/A</p>
                         <p class="legendnumber" id="legendnumber2">$75K</p>
-                        <p class="legendnumber" id="legendnumber3">100K</p>
-                        <p class="legendnumber" id="legendnumber4">125K</p>
-                        <p class="legendnumber" id="legendnumber5">150K</p>
-                        <p class="legendnumber" id="legendnumber6">175K</p>
-                        <p class="legendnumber" id="legendnumber7">200K</p>
+                        <p class="legendnumber" id="legendnumber3">$100K</p>
+                        <p class="legendnumber" id="legendnumber4">$125K</p>
+                        <p class="legendnumber" id="legendnumber5">$150K</p>
+                        <p class="legendnumber" id="legendnumber6">$175K</p>
+                        <p class="legendnumber" id="legendnumber7">$200K</p>
                     </div>
                 </div>
             </div>
@@ -445,11 +505,11 @@ function wrap(text, width) {
     };
 
     window.addEventListener('load', function() {
-        // resize();
+        resize();
     });
 
     window.addEventListener("resize", function(){
-        // resize();
+        resize();
     });
 
 

@@ -36,8 +36,15 @@ var svg = d3.select("#map-density")
 var g = svg.append("g").attr("width", width)
       .attr("height", height);
 
-var labels = svg.append("g").attr("width", width)
-      .attr("height", height);
+// var labels = svg.append("g").attr("width", width)
+//       .attr("height", height);
+
+      var labels = d3.select("#map-text")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height)
+                .append("g").attr("width", width)
+                .attr("height", height);
 
 
 var varByName = d3.map();
@@ -75,83 +82,123 @@ d3.json("./data/toronto-census-tracts-CT.json", function(error,json) {
      .attr("fill", function(d) { 
         return colour(varByName.get(d.properties.id)); })
         .attr("opacity", 0.9);
+  
+  
+       
 
 
 
-  labels.append("text")
-            .attr('class', "area-label area-label-background scarboroughlabel")
-            .attr("x", function (d) { return projection([-79.227722,43.766097])[0]; })
-            .attr("y", function (d) { return projection([-79.227722,43.766097])[1]; }) 
-            .text("Scarborough");
+     labels.append("text")
+     .attr('class', "area-label area-label-background roadLabel dvplabel")
+     .attr("x", function (d) { return projection([-79.330649,43.729977])[0]; })
+     .attr("y", function (d) { return projection([-79.330649,43.729977])[1]; }) 
+     .text("DVP");
+     // .attr("transform", "translate(-10,0)rotate(-45)")
+     // .style("text-anchor", "end");
 
-  labels.append("text")
-            .attr('class', "area-label area-label-background etobicokelabel")
-            .attr("x", function (d) { return projection([-79.545872,43.664813])[0]; })
-            .attr("y", function (d) { return projection([-79.545872,43.664813])[1]; }) 
-            .text("Etobicoke");
+labels.append("text")
+     .attr('class', "area-label area-label-background roadLabel fourohonelabel")
+     .attr("x", function (d) { return projection([-79.539926,43.712250])[0]; })
+     .attr("y", function (d) { return projection([-79.539926,43.712250])[1]; }) 
+     .text("401");
 
+labels.append("text")
+     .attr('class', "area-label area-label-background roadLabel fourohonelabelB")
+     .attr("x", function (d) { return projection([-79.303541,43.770411])[0]; })
+     .attr("y", function (d) { return projection([-79.303541,43.770411])[1]; }) 
+     .text("401");
 
-        labels.append("text")
-            .attr('class', "area-label area-label-background northyorklabel")
-            .attr("x", function (d) { return projection([-79.435117, 43.766014])[0]; })
-            .attr("y", function (d) { return projection([-79.435117, 43.766014])[1]; }) 
-            .text("North York");
+labels.append("text")
+     .attr('class', "area-label area-label-background scarboroughlabel")
+     .attr("x", function (d) { return projection([-79.227722,43.766097])[0]; })
+     .attr("y", function (d) { return projection([-79.227722,43.766097])[1]; }) 
+     .text("Scarborough");
 
-        labels.append("text")
-            .attr('class', "area-label area-label-background eastyorklabel")
-            .attr("x", function (d) { return projection([-79.326359, 43.690753])[0]; })
-            .attr("y", function (d) { return projection([-79.326359, 43.690753])[1]; }) 
-            .text("East York");
-
-        labels.append("text")
-            .attr('class', "area-label area-label-background yorklabel")
-            .attr("x", function (d) { return projection([-79.486996,43.687415])[0]; })
-            .attr("y", function (d) { return projection([-79.486996,43.687415])[1]; }) 
-            .text("York");
-
-        labels.append("text")
-            .attr('class', "area-label area-label-background downtownlabel")
-            .attr("x", function (d) { return projection([-79.382080,43.659100])[0]; })
-            .attr("y", function (d) { return projection([-79.382080,43.659100])[1]; }) 
-            .text("Downtown");
+labels.append("text")
+     .attr('class', "area-label area-label-background etobicokelabel")
+     .attr("x", function (d) { return projection([-79.545872,43.664813])[0]; })
+     .attr("y", function (d) { return projection([-79.545872,43.664813])[1]; }) 
+     .text("Etobicoke");
 
 
-  labels.append("text")
-            .attr('class', "area-label scarboroughlabel")
-            .attr("x", function (d) { return projection([-79.227722,43.766097])[0]; })
-            .attr("y", function (d) { return projection([-79.227722,43.766097])[1]; }) 
-            .text("Scarborough");
+ labels.append("text")
+     .attr('class', "area-label area-label-background northyorklabel")
+     .attr("x", function (d) { return projection([-79.435117, 43.766014])[0]; })
+     .attr("y", function (d) { return projection([-79.435117, 43.766014])[1]; }) 
+     .text("North York");
 
-  labels.append("text")
-            .attr('class', "area-label etobicokelabel")
-            .attr("x", function (d) { return projection([-79.545872,43.664813])[0]; })
-            .attr("y", function (d) { return projection([-79.545872,43.664813])[1]; }) 
-            .text("Etobicoke");
+ labels.append("text")
+     .attr('class', "area-label area-label-background eastyorklabel")
+     .attr("x", function (d) { return projection([-79.326359, 43.690753])[0]; })
+     .attr("y", function (d) { return projection([-79.326359, 43.690753])[1]; }) 
+     .text("East York");
+
+ labels.append("text")
+     .attr('class', "area-label area-label-background yorklabel")
+     .attr("x", function (d) { return projection([-79.486996,43.687415])[0]; })
+     .attr("y", function (d) { return projection([-79.486996,43.687415])[1]; }) 
+     .text("York");
+
+ labels.append("text")
+     .attr('class', "area-label area-label-background downtownlabel")
+     .attr("x", function (d) { return projection([-79.382080,43.659100])[0]; })
+     .attr("y", function (d) { return projection([-79.382080,43.659100])[1]; }) 
+     .text("Downtown");
+
+labels.append("text")
+     .attr('class', "area-label roadLabel dvplabel")
+     .attr("x", function (d) { return projection([-79.330649,43.729977])[0]; })
+     .attr("y", function (d) { return projection([-79.330649,43.729977])[1]; }) 
+     .text("DVP");
+
+labels.append("text")
+     .attr('class', "area-label roadLabel fourohonelabel")
+     .attr("x", function (d) { return projection([-79.539926,43.712250])[0]; })
+     .attr("y", function (d) { return projection([-79.539926,43.712250])[1]; }) 
+     .text("401");
+
+labels.append("text")
+     .attr('class', "area-label roadLabel fourohonelabelB")
+     .attr("x", function (d) { return projection([-79.303541,43.770411])[0]; })
+     .attr("y", function (d) { return projection([-79.303541,43.770411])[1]; }) 
+     .text("401");
+
+labels.append("text")
+     .attr('class', "area-label scarboroughlabel")
+     .attr("x", function (d) { return projection([-79.227722,43.766097])[0]; })
+     .attr("y", function (d) { return projection([-79.227722,43.766097])[1]; }) 
+     .text("Scarborough");
+
+labels.append("text")
+     .attr('class', "area-label etobicokelabel")
+     .attr("x", function (d) { return projection([-79.545872,43.664813])[0]; })
+     .attr("y", function (d) { return projection([-79.545872,43.664813])[1]; }) 
+     .text("Etobicoke");
 
 
-        labels.append("text")
-            .attr('class', "area-label northyorklabel")
-            .attr("x", function (d) { return projection([-79.435117, 43.766014])[0]; })
-            .attr("y", function (d) { return projection([-79.435117, 43.766014])[1]; }) 
-            .text("North York");
+ labels.append("text")
+     .attr('class', "area-label northyorklabel")
+     .attr("x", function (d) { return projection([-79.435117, 43.766014])[0]; })
+     .attr("y", function (d) { return projection([-79.435117, 43.766014])[1]; }) 
+     .text("North York");
 
-        labels.append("text")
-            .attr('class', "area-label eastyorklabel")
-            .attr("x", function (d) { return projection([-79.326359, 43.690753])[0]; })
-            .attr("y", function (d) { return projection([-79.326359, 43.690753])[1]; }) 
-            .text("East York");
+ labels.append("text")
+     .attr('class', "area-label eastyorklabel")
+     .attr("x", function (d) { return projection([-79.326359, 43.690753])[0]; })
+     .attr("y", function (d) { return projection([-79.326359, 43.690753])[1]; }) 
+     .text("East York");
 
-        labels.append("text")
-            .attr('class', "area-label yorklabel")
-            .attr("x", function (d) { return projection([-79.486996,43.687415])[0]; })
-            .attr("y", function (d) { return projection([-79.486996,43.687415])[1]; }) 
-            .text("York");
+ labels.append("text")
+     .attr('class', "area-label yorklabel")
+     .attr("x", function (d) { return projection([-79.486996,43.687415])[0]; })
+     .attr("y", function (d) { return projection([-79.486996,43.687415])[1]; }) 
+     .text("York");
 
-        labels.append("text")
-            .attr('class', "area-label downtownlabel")
-            .attr("x", function (d) { return projection([-79.382080,43.659100])[0]; })
-            .attr("y", function (d) { return projection([-79.382080,43.659100])[1]; }) 
-            .text("Downtown");
+ labels.append("text")
+     .attr('class', "area-label downtownlabel")
+     .attr("x", function (d) { return projection([-79.382080,43.659100])[0]; })
+     .attr("y", function (d) { return projection([-79.382080,43.659100])[1]; }) 
+     .text("Downtown");
 
 
         
@@ -191,7 +238,11 @@ d3.json("./data/toronto-census-tracts-CT.json", function(error,json) {
 
           .on("mousemove", function(){
                 d3.select("#tooltip")
-                .style("top", thisCentroid[1]+"px")
+                // .style("top", thisCentroid[1]+"px")
+                .style("top", function() {
+                    if (thisCentroid[1] > (height/2)) {return (thisCentroid[1]-60)+"px";}
+                    else {return (thisCentroid[1])+"px";}
+                  })
                 .style("left", function() {
                     if (thisCentroid[0] > (width/2)) {return (thisCentroid[0]-140)+"px";}
                     else {return (thisCentroid[0])+"px";}
@@ -250,29 +301,41 @@ d3.selectAll("g")
 d3.selectAll(".ward")
     .attr("d", path);
 
-d3.selectAll('.scarboroughlabel')
-            .attr("x", function (d) { return projection([-79.227722,43.766097])[0]; })
-            .attr("y", function (d) { return projection([-79.227722,43.766097])[1]; }) 
+    d3.selectAll('.scarboroughlabel')
+    .attr("x", function (d) { return projection([-79.227722,43.766097])[0]; })
+    .attr("y", function (d) { return projection([-79.227722,43.766097])[1]; }) 
 
 d3.selectAll('.etobicokelabel')
-          .attr("x", function (d) { return projection([-79.545872,43.664813])[0]; })
-            .attr("y", function (d) { return projection([-79.545872,43.664813])[1]; }) 
+  .attr("x", function (d) { return projection([-79.545872,43.664813])[0]; })
+    .attr("y", function (d) { return projection([-79.545872,43.664813])[1]; }) 
 
 d3.selectAll('.downtownlabel')
-            .attr("x", function (d) { return projection([-79.382080,43.659100])[0]; })
-            .attr("y", function (d) { return projection([-79.382080,43.659100])[1]; }) 
+    .attr("x", function (d) { return projection([-79.382080,43.659100])[0]; })
+    .attr("y", function (d) { return projection([-79.382080,43.659100])[1]; }) 
 
 d3.selectAll('.eastyorklabel')
-            .attr("x", function (d) { return projection([-79.326359, 43.690753])[0]; })
-            .attr("y", function (d) { return projection([-79.326359, 43.690753])[1]; }) 
+    .attr("x", function (d) { return projection([-79.326359, 43.690753])[0]; })
+    .attr("y", function (d) { return projection([-79.326359, 43.690753])[1]; }) 
 
 d3.selectAll('.yorklabel')
-            .attr("x", function (d) { return projection([-79.486996,43.687415])[0]; })
-            .attr("y", function (d) { return projection([-79.486996,43.687415])[1]; }) 
+    .attr("x", function (d) { return projection([-79.486996,43.687415])[0]; })
+    .attr("y", function (d) { return projection([-79.486996,43.687415])[1]; }) 
 
 d3.selectAll('.northyorklabel')
-            .attr("x", function (d) { return projection([-79.435117, 43.766014])[0]; })
-            .attr("y", function (d) { return projection([-79.435117, 43.766014])[1]; }) 
+    .attr("x", function (d) { return projection([-79.435117, 43.766014])[0]; })
+    .attr("y", function (d) { return projection([-79.435117, 43.766014])[1]; }) 
+
+d3.selectAll(".dvplabel")
+  .attr("x", function (d) { return projection([-79.330649,43.729977])[0]; })
+  .attr("y", function (d) { return projection([-79.330649,43.729977])[1]; }) ;
+
+d3.selectAll(".fourohonelabel")
+  .attr("x", function (d) { return projection([-79.539926,43.712250])[0]; })
+  .attr("y", function (d) { return projection([-79.539926,43.712250])[1]; });
+
+d3.selectAll(".fourohonelabelB")
+  .attr("x", function (d) { return projection([-79.303541,43.770411])[0]; })
+  .attr("y", function (d) { return projection([-79.303541,43.770411])[1]; });
 
 
 }

@@ -32,6 +32,23 @@
   display: inline-block;
 }
 
+#map-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.background-map {
+  width:  100%;
+  display: block;
+  margin-top: 1px;
+  position: absolute;
+  top: 0;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
 
 .mapheading {
   margin: 0;
@@ -78,6 +95,10 @@
 	font-family: Helvetica, Arial, sans-serif;
 	text-anchor: middle;
   	pointer-events: none;
+}
+
+.area-label.roadLabel {
+	font-size: 9px;
 }
 
 .area-label-background {
@@ -249,6 +270,36 @@
   margin: 0;
 }
 
+@media (max-width: 480px) {
+
+  .graphic-legend {
+    width: 256px;
+  }
+
+  .legendheading {
+    max-width: 230px;
+  }
+
+  .legendbox-container-1 {
+    width: 256px;
+  }
+
+  .legendbox {
+    font-size: 11px;
+    width: 27px;
+  }
+
+  .legendnumber {
+    font-size: 11px;
+    width: 27px;
+  }
+
+  #legendnumber2 {
+    margin-left: 19px;
+  }
+
+}
+
 
 
 /*END OF LEGEND*/
@@ -318,6 +369,10 @@
          <div class="map-container">
 
                 <div class="map" id="map-tree-coverage"></div>
+           
+                <!-- <img class="background-map" src="./img/road-background.png"> -->
+                     
+                     <div class="map" id="map-text"></div>
 
                 <div id="tooltip" class="hidden">
                     <div id="value"></div>
@@ -342,13 +397,13 @@
                         <div class="legendbox" id="legendbox8"></div>
                     </div>
                     <div class="legendnumber-container-1 clearfix">
-                        <p class="legendnumber" id="legendnumber1">>800K</p>
+                        <p class="legendnumber" id="legendnumber1">800K</p>
                         <p class="legendnumber" id="legendnumber2">1M</p>
                         <p class="legendnumber" id="legendnumber3">1.2M</p>
                         <p class="legendnumber" id="legendnumber4">1.4M</p>
                         <p class="legendnumber" id="legendnumber5">1.6M</p>
                         <p class="legendnumber" id="legendnumber6">1.8M</p>
-                        <p class="legendnumber" id="legendnumber7">2M+</p>
+                        <p class="legendnumber" id="legendnumber7">2M</p>
                     </div>
                 </div>
             </div>
